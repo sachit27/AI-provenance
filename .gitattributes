@@ -1,0 +1,2 @@
+# Preserve the published CSV bytes exactly and avoid line-ending normalization.
+data/*.csv -text -diff

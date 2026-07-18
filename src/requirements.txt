@@ -1,0 +1,17 @@
+openai>=1.30
+python-dotenv>=1.0
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0
+scikit-learn>=1.3
+scipy>=1.12
+matplotlib>=3.8
+seaborn>=0.13
+networkx>=3.2
+sentence-transformers>=3.0
+keybert>=0.8
+POT>=0.9
+statsmodels>=0.14
+hdbscan>=0.8
+umap-learn>=0.5
+tqdm>=4.66
