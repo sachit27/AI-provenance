@@ -132,7 +132,7 @@ def make_overview() -> None:
                 edgecolor="white", linewidth=.3, label=topic_label)
         ax.axvline(transport["coverage"]["exclusion_threshold"],
                    color=COLORS[topic], linestyle="--", linewidth=2.2,
-                   label=f"{'Education' if topic == 'education' else 'Trust'} exclusion $\\tau$ = {transport['coverage']['exclusion_threshold']:.2f}")
+                   label=f"{'Education' if topic == 'education' else 'Trust'} low-coverage $\\tau$ = {transport['coverage']['exclusion_threshold']:.2f}")
         ax.axvline(transport["coverage"]["mean"], color=COLORS[topic],
                    linestyle=":", linewidth=2.2,
                    label=f"{'Education' if topic == 'education' else 'Trust'} mean = {transport['coverage']['mean']:.2f}")
@@ -184,7 +184,7 @@ def make_clusters() -> None:
                        edgecolor="black", linewidth=.4)
         ax.set_yticks(y, labels)
         ax.invert_yaxis()
-        ax.set_xlabel("Exclusion rate (%)")
+        ax.set_xlabel("Low coverage (%)")
         title = "Education & Skills" if topic == "education" else "Safe AI & Public Trust"
         ax.set_title(title)
         for bar, value in zip(bars, rates):
@@ -203,7 +203,7 @@ def make_clusters() -> None:
                 edgecolor="black", linewidth=.4, capsize=4)
         threshold = transport["coverage"]["exclusion_threshold"]
         ax.axvline(threshold, color="#e15759", linestyle="--", linewidth=1.8,
-                   label=f"Exclusion threshold = {threshold:.2f}")
+                   label=f"Low-coverage threshold = {threshold:.2f}")
         ax.set_yticks(y, labels)
         ax.invert_yaxis()
         ax.set_xlabel("Mean coverage score")
@@ -413,7 +413,7 @@ def make_robustness() -> None:
                 color=COLORS[topic], linewidth=2,
                 label="Education" if topic == "education" else "Trust")
     ax.set_xlabel("Threshold multiplier below mean (SD)")
-    ax.set_ylabel("Excluded (%)")
+    ax.set_ylabel("Low coverage (%)")
     ax.set_title("Threshold sensitivity")
     ax.legend()
     panel(ax, "d")

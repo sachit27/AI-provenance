@@ -29,6 +29,7 @@ operational screening measure; it does not imply deliberate exclusion.
 │   ├── 07_crossfit_benchmarks.py
 │   ├── 08_summarize_benchmarks.py
 │   ├── 09_figures.py
+│   ├── verify_sentence_assignment.py
 │   ├── analysis_io.py
 │   ├── config.py
 │   ├── requirements.txt
@@ -91,9 +92,18 @@ python src/run_pipeline.py --output-root outputs/analysis
 ```
 
 The output directory will contain cleaned records, embeddings, cluster and
-coverage results, robustness analyses, benchmark summaries, and figures. The
-pipeline can require substantial memory and compute time, and OpenAI API calls
-may incur charges.
+coverage results, robustness analyses, benchmark summaries, sentence-level
+assignment artifacts, and figures. The runner generates and verifies
+`sentence_assignment.json` for both topics with
+`src/verify_sentence_assignment.py`. To verify an existing output directory
+without rerunning the pipeline, use:
+
+```bash
+PROVENANCE_OUTPUT_DIR=outputs/analysis python src/verify_sentence_assignment.py
+```
+
+The pipeline can require substantial memory and compute time, and OpenAI API
+calls may incur charges.
 
 Randomized analytical stages use fixed seeds. Because some stages depend on
 external model services, a fresh run may differ slightly from a previously
