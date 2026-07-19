@@ -56,6 +56,7 @@ def main() -> None:
         run("07_crossfit_benchmarks.py", "--model", model)
 
     run("08_summarize_benchmarks.py")
+    run("verify_sentence_assignment.py", "--generate")
     run("09_figures.py")
     print(f"\nAnalysis complete: {output_root}")
 
