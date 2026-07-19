@@ -55,7 +55,6 @@ SLOT_LENGTH_LOWER = 0.75
 SLOT_LENGTH_UPPER = 1.00
 PREFILTER_TOP_MEAN = 800
 PREFILTER_TOP_TAIL = 800
-PREFILTER_TOP_PER_GROUP = 100
 TAIL_FRACTION = 0.10
 
 
@@ -254,7 +253,14 @@ def sample_complete_summary(slot_pools, owner_values, budgets, rng):
     return selected
 
 
-def prefilter_candidates(sim_train, candidates, train_owner_mask, train_labels):
+def prefilter_candidates(sim_train, candidates, train_owner_mask):
+    """Shortlist candidates using training records only.
+
+    The prefilter deliberately avoids cluster labels because the manuscript's
+    analytic partition is fitted to the complete corpus. Using those labels in
+    held-out selection would allow test embeddings to influence the candidate
+    pool indirectly.
+    """
     allowed = train_owner_mask[candidates["owner_index"].to_numpy()]
     allowed_idx = np.flatnonzero(allowed)
     local = sim_train[:, allowed_idx]
@@ -263,9 +269,6 @@ def prefilter_candidates(sim_train, candidates, train_owner_mask, train_labels):
     tail_score = np.partition(local, tail_n - 1, axis=0)[:tail_n].mean(axis=0)
     keep_local = set(np.argsort(mean_score)[-PREFILTER_TOP_MEAN:].tolist())
     keep_local.update(np.argsort(tail_score)[-PREFILTER_TOP_TAIL:].tolist())
-    for label in np.unique(train_labels):
-        group_mean = local[train_labels == label].mean(axis=0)
-        keep_local.update(np.argsort(group_mean)[-PREFILTER_TOP_PER_GROUP:].tolist())
     return allowed_idx[np.array(sorted(keep_local), dtype=int)]
 
 
@@ -470,18 +473,12 @@ def evaluate_topic(topic, snapshot_root: Path, output_root: Path, model_name: st
     split_results = []
     for split_index, split_seed in enumerate(split_seeds):
         rng = np.random.RandomState(int(split_seed))
-        train_indices, test_indices = [], []
-        for label in sorted(np.unique(labels)):
-            group = np.flatnonzero(labels == label)
-            shuffled = rng.permutation(group)
-            n_test = max(1, int(round(TEST_FRACTION * len(group))))
-            test_indices.extend(shuffled[:n_test])
-            train_indices.extend(shuffled[n_test:])
-        train_indices = np.array(sorted(train_indices), dtype=int)
-        test_indices = np.array(sorted(test_indices), dtype=int)
+        shuffled = rng.permutation(n_records)
+        n_test = max(1, int(round(TEST_FRACTION * n_records)))
+        test_indices = np.sort(shuffled[:n_test])
+        train_indices = np.sort(shuffled[n_test:])
         train_owner_mask = np.zeros(n_records, dtype=bool)
         train_owner_mask[train_indices] = True
-        train_labels = labels[train_indices]
         sim_train = similarity[train_indices]
         sim_test = similarity[test_indices]
 
@@ -527,9 +524,7 @@ def evaluate_topic(topic, snapshot_root: Path, output_root: Path, model_name: st
             },
         }
 
-        candidate_pool = prefilter_candidates(
-            sim_train, candidates, train_owner_mask, train_labels
-        )
+        candidate_pool = prefilter_candidates(sim_train, candidates, train_owner_mask)
         selected_mean = greedy_select(
             sim_train, candidates, candidate_pool, budgets, "mean"
         )
@@ -594,7 +589,7 @@ def evaluate_topic(topic, snapshot_root: Path, output_root: Path, model_name: st
         "held_out_protocol": {
             "n_splits": N_SPLITS,
             "test_fraction": TEST_FRACTION,
-            "stratified_by_frozen_cluster": True,
+            "stratified_by_frozen_cluster": False,
             "complete_random_draws_per_split": N_COMPLETE_RANDOM_PER_SPLIT,
             "selection_access": "training records and their candidate sentences only",
             "evaluation_access": "untouched held-out records",
@@ -602,9 +597,11 @@ def evaluate_topic(topic, snapshot_root: Path, output_root: Path, model_name: st
                 "mean": "mean participant semantic coverage",
                 "balanced_tail": "0.5 * mean coverage + 0.5 * bottom-decile mean coverage",
             },
+            "fold_assignment": "random 80/20 split independent of full-corpus cluster labels",
+            "candidate_prefilter": "training-only mean and bottom-decile similarity",
             "limitation": (
-                "Frozen clusters were originally estimated on the full corpus; cluster-stratified "
-                "splits and group diagnostics are therefore sensitivity analyses, not an external test."
+                "Full-corpus clusters are used only to describe held-out results by analytic region; "
+                "they do not determine split membership or candidate selection."
             ),
         },
         "aggregate": {

@@ -6,7 +6,6 @@ All constants, paths, and summaries in one place.
 import json
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 import numpy as np
 
 
@@ -32,8 +31,6 @@ OUTPUT_DIR = Path(os.environ.get(
     "PROVENANCE_OUTPUT_DIR",
     str(PIPELINE_DIR / "analysis"),
 )).expanduser().resolve()
-
-load_dotenv(BASE_DIR / ".env")
 
 # ─── Official Summaries (verbatim from AiStrategyReport_EN.pdf, page 8) ─────
 

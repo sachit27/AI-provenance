@@ -9,8 +9,10 @@ Trust**.
 The analysis measures semantic coverage at the level of individual responses,
 examines where low coverage concentrates, compares patterns across topics and
 embedding models, and evaluates official summaries against length-matched
-random text and leakage-controlled extractive benchmarks. Low coverage is an
-operational screening measure; it does not imply deliberate exclusion.
+random text and leakage-controlled extractive benchmarks. In the cross-fitted
+benchmark, fold assignment is independent of the full-corpus clusters and
+candidate filtering uses training records only. Low coverage is an operational
+screening measure; it does not imply deliberate exclusion.
 
 ## Repository structure
 
@@ -71,7 +73,8 @@ The complete raw-data run uses:
 - `nomic-embed-text` through a local [Ollama](https://ollama.com/) service as
   an additional robustness check.
 
-Set the OpenAI API key without committing it:
+The repository contains no credentials. Set the OpenAI API key in the process
+environment without committing it:
 
 ```bash
 export OPENAI_API_KEY="your-key"
@@ -93,7 +96,7 @@ python src/run_pipeline.py --output-root outputs/analysis
 
 The output directory will contain cleaned records, embeddings, cluster and
 coverage results, robustness analyses, benchmark summaries, sentence-level
-assignment artifacts, and figures. The runner generates and verifies
+assignment artifacts, and figures. The runner generates and structurally verifies
 `sentence_assignment.json` for both topics with
 `src/verify_sentence_assignment.py`. To verify an existing output directory
 without rerunning the pipeline, use:
@@ -106,8 +109,10 @@ The pipeline can require substantial memory and compute time, and OpenAI API
 calls may incur charges.
 
 Randomized analytical stages use fixed seeds. Because some stages depend on
-external model services, a fresh run may differ slightly from a previously
-archived numerical result even when the same model names and inputs are used.
+external model services, a fresh run may differ slightly from the article's
+reported numerical result even when the same model names and inputs are used.
+The source CSV files and scripts are the released materials; generated
+embeddings, credentials, and local analysis outputs are not committed.
 
 ## Data
 

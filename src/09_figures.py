@@ -285,7 +285,10 @@ def make_associations() -> None:
 
 def make_benchmarks() -> None:
     data = pd.read_csv(CROSSFIT / "crossfit_confirmatory_summary.csv")
-    data["label"] = data.topic.str.title() + "\n" + data.model.map({"openai": "OpenAI", "mpnet": "MPNet"})
+    data["label"] = data.topic.str.title() + "\n" + data.model.map({
+        "openai": "text-embedding-\n3-large",
+        "mpnet": "all-mpnet-\nbase-v2",
+    })
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
     x = np.arange(len(data))
     width = .36
@@ -315,7 +318,7 @@ def make_benchmarks() -> None:
     ax.set_xticks(x, data.label)
     ax.set_ylim(.42, .74)
     ax.set_ylabel("Held-out mean coverage")
-    ax.set_title("Budget-matched feasible frontier")
+    ax.set_title("Same-budget coverage benchmark")
     ax.legend(ncol=2)
     panel(ax, "b")
 
@@ -340,7 +343,7 @@ def make_benchmarks() -> None:
            linewidth=.4, label="Tail-optimized")
     ax.set_xticks(x, data.label)
     ax.set_ylim(0, 22)
-    ax.set_ylabel("Low coverage at official-reference threshold (%)")
+    ax.set_ylabel("Below official threshold (%)")
     ax.set_title("Low-coverage rate")
     ax.legend(ncol=2)
     panel(ax, "d")
@@ -402,7 +405,7 @@ def make_robustness() -> None:
     ax.set_xticks(np.arange(len(rr)), rr.label)
     ax.set_ylim(0, 1)
     ax.set_ylabel("Spearman $\\rho$")
-    ax.set_title("Embedding-model rank robustness")
+    ax.set_title("Embedding-model rank agreement")
     panel(ax, "c")
 
     ax = axes[1, 1]
@@ -414,7 +417,7 @@ def make_robustness() -> None:
                 label="Education" if topic == "education" else "Trust")
     ax.set_xlabel("Threshold multiplier below mean (SD)")
     ax.set_ylabel("Low coverage (%)")
-    ax.set_title("Threshold sensitivity")
+    ax.set_title("Threshold check")
     ax.legend()
     panel(ax, "d")
 
@@ -526,7 +529,8 @@ def make_crossfit_supplement() -> None:
     for topic in ["education", "trust"]:
         for model in ["openai", "mpnet"]:
             payload = json.load(open(CROSSFIT / topic / f"crossfit_{model}.json"))
-            label = f"{topic.title()}\n{'OpenAI' if model == 'openai' else 'MPNet'}"
+            model_label = "text-embedding-3-large" if model == "openai" else "all-mpnet-base-v2"
+            label = f"{topic.title()}\n{model_label}"
             for fold in payload["fold_results"]:
                 metrics = fold["metrics"]
                 fold_rows.append({
@@ -542,8 +546,10 @@ def make_crossfit_supplement() -> None:
     folds = pd.DataFrame(fold_rows)
     repeats = pd.DataFrame(repeat_rows)
     label_map = {
-        "Education\nOpenAI": "Edu.\nOpenAI", "Education\nMPNet": "Edu.\nMPNet",
-        "Trust\nOpenAI": "Trust\nOpenAI", "Trust\nMPNet": "Trust\nMPNet",
+        "Education\ntext-embedding-3-large": "Edu.\ntext-embedding-\n3-large",
+        "Education\nall-mpnet-base-v2": "Edu.\nall-mpnet-\nbase-v2",
+        "Trust\ntext-embedding-3-large": "Trust\ntext-embedding-\n3-large",
+        "Trust\nall-mpnet-base-v2": "Trust\nall-mpnet-\nbase-v2",
     }
     folds["plot_label"] = folds.label.map(label_map)
     repeats["plot_label"] = repeats.label.map(label_map)

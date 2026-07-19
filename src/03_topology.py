@@ -24,7 +24,7 @@ References:
   - Davies & Bouldin (1979), "A cluster separation measure"
   - Tibshirani et al. (2001), "Estimating the number of clusters via the gap statistic"
   - McInnes et al. (2017), "hdbscan: Hierarchical density based clustering"
-  - Grootendorst (2020), "KeyBERT: Minimal keyword extraction with BERT"
+  - Grootendorst (2021), "KeyBERT: Minimal keyword extraction with BERT"
   - Bouma (2009), "Normalized PMI in collocation extraction"
 
 Usage:

@@ -2,10 +2,12 @@
 """Repeated cross-fitted refinement of the budget-matched benchmark.
 
 Every participant is evaluated out of sample exactly once in each repetition
-of stratified five-fold cross-fitting. Participant-level out-of-fold coverage
-is averaged across repetitions before paired, cluster-stratified bootstrap
-inference. The script uses the leakage-controlled candidate pool and versioned
-combined embedding artifact created by 02_prepare_benchmarks.py.
+of shuffled five-fold cross-fitting. Fold assignment and candidate selection
+do not use the full-corpus cluster partition. Participant-level out-of-fold
+coverage is averaged across repetitions before conditional paired-bootstrap
+intervals and paired randomization tests are computed. The script uses the
+leakage-controlled candidate pool and combined embedding artifact created by
+02_prepare_benchmarks.py.
 
 The extractive selections remain coverage benchmarks, not publishable prose.
 """
@@ -19,8 +21,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from scipy import stats
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import KFold
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -76,12 +77,8 @@ def scalar_metrics(coverage: np.ndarray, threshold: float) -> dict[str, float]:
     }
 
 
-def stratified_bootstrap_indices(labels: np.ndarray, rng: np.random.RandomState) -> np.ndarray:
-    sampled = []
-    for label in sorted(np.unique(labels)):
-        group = np.flatnonzero(labels == label)
-        sampled.append(rng.choice(group, size=len(group), replace=True))
-    return np.concatenate(sampled)
+def participant_bootstrap_indices(n: int, rng: np.random.RandomState) -> np.ndarray:
+    return rng.randint(0, n, size=n)
 
 
 def bootstrap_interval(values: np.ndarray) -> list[float]:
@@ -91,21 +88,8 @@ def bootstrap_interval(values: np.ndarray) -> list[float]:
     ]
 
 
-def bootstrap_p_values(values: np.ndarray, lower_is_better: bool) -> tuple[float, float]:
-    n = len(values)
-    if lower_is_better:
-        one_sided = (1 + np.sum(values >= 0)) / (n + 1)
-    else:
-        one_sided = (1 + np.sum(values <= 0)) / (n + 1)
-    p_left = (1 + np.sum(values <= 0)) / (n + 1)
-    p_right = (1 + np.sum(values >= 0)) / (n + 1)
-    two_sided = min(1.0, 2 * min(p_left, p_right))
-    return float(one_sided), float(two_sided)
-
-
 def paired_participant_bootstrap(
     predictions: dict[str, np.ndarray],
-    labels: np.ndarray,
     threshold: float,
     n_bootstrap: int,
     seed: int,
@@ -120,9 +104,14 @@ def paired_participant_bootstrap(
                  for metric in BOOTSTRAP_METRICS}
         for method in COMPARISON_METHODS
     }
+    randomization_null = {
+        method: {metric: np.empty(n_bootstrap, dtype=np.float32)
+                 for metric in BOOTSTRAP_METRICS}
+        for method in COMPARISON_METHODS
+    }
     rng = np.random.RandomState(seed)
     for iteration in range(n_bootstrap):
-        indices = stratified_bootstrap_indices(labels, rng)
+        indices = participant_bootstrap_indices(len(official), rng)
         official_metrics = scalar_metrics(official[indices], threshold)
         for method in COMPARISON_METHODS:
             method_metrics = scalar_metrics(predictions[method][indices], threshold)
@@ -131,11 +120,33 @@ def paired_participant_bootstrap(
                     method_metrics[metric] - official_metrics[metric]
                 )
 
+    randomization_rng = np.random.RandomState(seed + 1)
+    for method in COMPARISON_METHODS:
+        method_values = predictions[method]
+        for iteration in range(n_bootstrap):
+            swap = randomization_rng.randint(0, 2, size=len(official)).astype(bool)
+            permuted_official = np.where(swap, method_values, official)
+            permuted_method = np.where(swap, official, method_values)
+            official_metrics = scalar_metrics(permuted_official, threshold)
+            method_metrics = scalar_metrics(permuted_method, threshold)
+            for metric in BOOTSTRAP_METRICS:
+                randomization_null[method][metric][iteration] = (
+                    method_metrics[metric] - official_metrics[metric]
+                )
+
     output = {
         "n_bootstrap": n_bootstrap,
+        "n_paired_randomizations": n_bootstrap,
         "resampling_unit": "participant",
-        "resampling_stratified_by_frozen_cluster": True,
+        "resampling_stratified_by_frozen_cluster": False,
         "predictions_averaged_across_crossfit_repetitions": True,
+        "interval_estimand": (
+            "Conditional on the fitted crossfit selections and generated embeddings"
+        ),
+        "hypothesis_test": (
+            "Paired participant-label randomization; method and official scores are "
+            "swapped within participants under the null"
+        ),
         "point_metrics": point_metrics,
         "paired_vs_official": {},
     }
@@ -146,8 +157,20 @@ def paired_participant_bootstrap(
             point_difference = (
                 point_metrics[method][metric] - point_metrics["official"][metric]
             )
-            one_sided, two_sided = bootstrap_p_values(
-                values, metric in LOWER_IS_BETTER
+            null_values = randomization_null[method][metric]
+            if metric in LOWER_IS_BETTER:
+                one_sided = float(
+                    (1 + np.sum(null_values <= point_difference)) /
+                    (n_bootstrap + 1)
+                )
+            else:
+                one_sided = float(
+                    (1 + np.sum(null_values >= point_difference)) /
+                    (n_bootstrap + 1)
+                )
+            two_sided = float(
+                (1 + np.sum(np.abs(null_values) >= abs(point_difference))) /
+                (n_bootstrap + 1)
             )
             output["paired_vs_official"][method][metric] = {
                 "point_difference": float(point_difference),
@@ -163,10 +186,12 @@ def repeat_level_sensitivity(
     threshold: float,
 ) -> dict:
     n_repeats = prediction_matrices["official"].shape[0]
-    critical = float(stats.t.ppf(0.975, df=n_repeats - 1))
     output = {
         "n_complete_crossfit_repetitions": n_repeats,
-        "interval": "two-sided 95% t interval across complete repetitions",
+        "summary": (
+            "Observed variation across repeated partitions; repetitions reuse the "
+            "same participants and are not independent population replications"
+        ),
         "paired_vs_official": {},
     }
     for method in COMPARISON_METHODS:
@@ -182,9 +207,6 @@ def repeat_level_sensitivity(
                 )
                 differences.append(method_metrics[metric] - official_metrics[metric])
             values = np.asarray(differences, dtype=float)
-            standard_error = values.std(ddof=1) / math.sqrt(n_repeats)
-            lower = float(values.mean() - critical * standard_error)
-            upper = float(values.mean() + critical * standard_error)
             if metric in LOWER_IS_BETTER:
                 all_improve = bool(np.all(values < 0))
             else:
@@ -193,23 +215,10 @@ def repeat_level_sensitivity(
                 "repeat_differences": values.tolist(),
                 "mean_difference": float(values.mean()),
                 "sd_across_repetitions": float(values.std(ddof=1)),
-                "t_95_ci": [lower, upper],
+                "observed_range": [float(values.min()), float(values.max())],
                 "all_repetitions_improve": all_improve,
             }
     return output
-
-
-def holm_adjust(p_values: list[float]) -> list[float]:
-    values = np.asarray(p_values, dtype=float)
-    order = np.argsort(values)
-    adjusted = np.empty(len(values), dtype=float)
-    running = 0.0
-    total = len(values)
-    for rank, index in enumerate(order):
-        candidate = min(1.0, (total - rank) * values[index])
-        running = max(running, candidate)
-        adjusted[index] = running
-    return adjusted.tolist()
 
 
 def group_bootstrap_diagnostics(
@@ -243,14 +252,10 @@ def group_bootstrap_diagnostics(
             exclusion_differences = (
                 (method_resampled < threshold).mean(axis=1) - official_exclusions
             )
-            mean_one, mean_two = bootstrap_p_values(mean_differences, False)
-            excl_one, excl_two = bootstrap_p_values(exclusion_differences, True)
             group_result["methods"][method] = {
                 "mean_coverage": float(values.mean()),
                 "mean_coverage_difference": float(values.mean() - official.mean()),
                 "mean_difference_percentile_95_ci": bootstrap_interval(mean_differences),
-                "mean_improvement_p_raw": mean_one,
-                "mean_two_sided_p_raw": mean_two,
                 "exclusion_rate": float(np.mean(values < threshold)),
                 "exclusion_rate_difference": float(
                     np.mean(values < threshold) - np.mean(official < threshold)
@@ -258,26 +263,8 @@ def group_bootstrap_diagnostics(
                 "exclusion_difference_percentile_95_ci": bootstrap_interval(
                     exclusion_differences
                 ),
-                "exclusion_improvement_p_raw": excl_one,
-                "exclusion_two_sided_p_raw": excl_two,
             }
         diagnostics[str(int(label))] = group_result
-
-    # Family-wise Holm correction across clusters, separately for each method
-    # and diagnostic. The embedding models are robustness replications rather
-    # than additional members of the within-run cluster family.
-    for method in ["mean_optimized_extractive", "balanced_tail_optimized_extractive"]:
-        for raw_key, adjusted_key in [
-            ("mean_improvement_p_raw", "mean_improvement_p_holm"),
-            ("exclusion_improvement_p_raw", "exclusion_improvement_p_holm"),
-        ]:
-            labels_order = list(diagnostics)
-            adjusted = holm_adjust([
-                diagnostics[label]["methods"][method][raw_key]
-                for label in labels_order
-            ])
-            for label, value in zip(labels_order, adjusted):
-                diagnostics[label]["methods"][method][adjusted_key] = float(value)
     return diagnostics
 
 
@@ -374,19 +361,18 @@ def run_crossfit_topic(
     )
 
     for repeat_index, repeat_seed in enumerate(repeat_seeds):
-        splitter = StratifiedKFold(
+        splitter = KFold(
             n_splits=n_folds,
             shuffle=True,
             random_state=int(repeat_seed),
         )
         test_counts = np.zeros(n_records, dtype=int)
         for fold_index, (train_indices, test_indices) in enumerate(
-            splitter.split(np.zeros(n_records), labels)
+            splitter.split(np.zeros(n_records))
         ):
             test_counts[test_indices] += 1
             train_owner_mask = np.zeros(n_records, dtype=bool)
             train_owner_mask[train_indices] = True
-            train_labels = labels[train_indices]
             sim_train = similarity[train_indices]
             sim_test = similarity[test_indices]
             fold_seed = int(repeat_seed + 10007 * (fold_index + 1)) % (2**31 - 1)
@@ -404,7 +390,7 @@ def run_crossfit_topic(
             random_expected /= N_COMPLETE_RANDOM_PER_FOLD
 
             candidate_pool = bm.prefilter_candidates(
-                sim_train, candidates, train_owner_mask, train_labels
+                sim_train, candidates, train_owner_mask
             )
             selected_mean = bm.greedy_select(
                 sim_train, candidates, candidate_pool, budgets, "mean"
@@ -478,7 +464,6 @@ def run_crossfit_topic(
     }
     inference = paired_participant_bootstrap(
         participant_predictions,
-        labels,
         threshold,
         n_bootstrap,
         SEED + 700001,
@@ -525,7 +510,8 @@ def run_crossfit_topic(
         "crossfit_protocol": {
             "n_repeats": n_repeats,
             "n_folds": n_folds,
-            "stratified_by_frozen_cluster": True,
+            "stratified_by_frozen_cluster": False,
+            "fold_assignment": "shuffled KFold independent of full-corpus cluster labels",
             "shuffle_within_repetition": True,
             "each_participant_tested_once_per_repetition": True,
             "complete_random_summaries_per_fold": N_COMPLETE_RANDOM_PER_FOLD,
@@ -534,14 +520,15 @@ def run_crossfit_topic(
                 "participant-level tail inference because averaging random summaries "
                 "changes the lower-tail estimand."
             ),
-            "selection_access": "training participants and their candidate sentences only",
+            "candidate_prefilter": "training-only mean and bottom-decile similarity",
+            "selection_access": "training participant embeddings and their candidate sentences only",
             "evaluation_access": "held-out fold only",
             "participant_estimand": "mean out-of-fold coverage across repetitions",
             "limitation": (
-                "Frozen clusters were estimated on the full corpus. Cluster stratification and "
-                "group diagnostics are sensitivity analyses, not external validation. Bootstrap "
-                "intervals condition on the fitted crossfit selections and do not refit them "
-                "inside every bootstrap resample."
+                "Full-corpus clusters are used only for post hoc analytic-region diagnostics. "
+                "They do not determine fold assignment, candidate prefiltering, or selection. "
+                "Bootstrap intervals condition on the fitted crossfit selections and generated "
+                "embeddings; they do not refit selection or regenerate embeddings in each resample."
             ),
         },
         "exact_length_random_reference": exploratory_result["exact_length_random"],

@@ -13,8 +13,7 @@ Contents per topic:
     similarity to EACH official sentence (all records, and among records
     assigned to that sentence);
   - source-cluster shares of the cross-fitted benchmark selections,
-    zero-filled over all clusters so absences (e.g., zero selections from
-    Education C8) are explicit and asserted.
+    zero-filled over all clusters so absent selections are explicit.
 """
 import argparse
 import json
@@ -124,11 +123,6 @@ def main() -> None:
         require(saved == fresh,
                 f"{topic}: sentence_assignment.json does not match a "
                 f"recomputation from the analysis-ready inputs")
-        # explicit headline assertions used in the manuscript
-        if topic == "education":
-            for run, rec in saved["benchmark_selection_source_clusters"].items():
-                require(rec["counts"]["8"] == 0,
-                        f"education {run}: expected zero C8 selections")
         print(f"{topic}: sentence-assignment artifact verified")
     print("PASS")
 

@@ -142,8 +142,7 @@ def process_topic(topic_name: str):
         "coverage_regime",
     ]
     df = df.drop(columns=[c for c in stale_columns if c in df.columns])
-    input_embeddings, summary_embeddings, _ = core_embeddings(topic_name)
-    summary_sentences = data["summary_sentences"].tolist()
+    input_embeddings, summary_embeddings, summary_sentences = core_embeddings(topic_name)
 
     n = len(df)
     n_summary = len(summary_embeddings)

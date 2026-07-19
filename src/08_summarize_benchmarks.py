@@ -106,8 +106,8 @@ def main():
                 "mean_optimized_bootstrap_ci_low": mean_result["percentile_95_ci"][0],
                 "mean_optimized_bootstrap_ci_high": mean_result["percentile_95_ci"][1],
                 "mean_optimized_repeat_mean_difference": repeats["mean_optimized_extractive"]["mean_coverage"]["mean_difference"],
-                "mean_optimized_repeat_ci_low": repeats["mean_optimized_extractive"]["mean_coverage"]["t_95_ci"][0],
-                "mean_optimized_repeat_ci_high": repeats["mean_optimized_extractive"]["mean_coverage"]["t_95_ci"][1],
+                "mean_optimized_repeat_range_low": repeats["mean_optimized_extractive"]["mean_coverage"]["observed_range"][0],
+                "mean_optimized_repeat_range_high": repeats["mean_optimized_extractive"]["mean_coverage"]["observed_range"][1],
                 "mean_optimized_p_raw": mean_result["one_sided_improvement_p"],
                 "mean_optimized_p_holm_primary_family": adjusted_lookup[(
                     topic, model, "mean_optimized_extractive", "mean_coverage"
@@ -118,8 +118,8 @@ def main():
                 "tail_optimized_bootstrap_ci_low": tail_result["percentile_95_ci"][0],
                 "tail_optimized_bootstrap_ci_high": tail_result["percentile_95_ci"][1],
                 "tail_optimized_repeat_mean_difference": repeats["balanced_tail_optimized_extractive"]["bottom_decile_mean"]["mean_difference"],
-                "tail_optimized_repeat_ci_low": repeats["balanced_tail_optimized_extractive"]["bottom_decile_mean"]["t_95_ci"][0],
-                "tail_optimized_repeat_ci_high": repeats["balanced_tail_optimized_extractive"]["bottom_decile_mean"]["t_95_ci"][1],
+                "tail_optimized_repeat_range_low": repeats["balanced_tail_optimized_extractive"]["bottom_decile_mean"]["observed_range"][0],
+                "tail_optimized_repeat_range_high": repeats["balanced_tail_optimized_extractive"]["bottom_decile_mean"]["observed_range"][1],
                 "tail_optimized_p_raw": tail_result["one_sided_improvement_p"],
                 "tail_optimized_p_holm_primary_family": adjusted_lookup[(
                     topic, model, "balanced_tail_optimized_extractive", "bottom_decile_mean"
@@ -136,12 +136,10 @@ def main():
                 "worst_cluster_tail_optimized_mean": worst_tail["mean_coverage"],
                 "worst_cluster_mean_difference_ci_low": worst_tail["mean_difference_percentile_95_ci"][0],
                 "worst_cluster_mean_difference_ci_high": worst_tail["mean_difference_percentile_95_ci"][1],
-                "worst_cluster_mean_p_holm": worst_tail["mean_improvement_p_holm"],
                 "worst_cluster_official_exclusion": worst["official_exclusion_rate"],
                 "worst_cluster_tail_optimized_exclusion": worst_tail["exclusion_rate"],
                 "worst_cluster_exclusion_difference_ci_low": worst_tail["exclusion_difference_percentile_95_ci"][0],
                 "worst_cluster_exclusion_difference_ci_high": worst_tail["exclusion_difference_percentile_95_ci"][1],
-                "worst_cluster_exclusion_p_holm": worst_tail["exclusion_improvement_p_holm"],
                 "exact_random_official_mean": exact["official"]["mean_coverage"],
                 "exact_random_null_mean": exact["random_mean_coverage"]["mean"],
                 "exact_random_mean_p": exact["random_mean_coverage"]["official_upper_tail_p"],
