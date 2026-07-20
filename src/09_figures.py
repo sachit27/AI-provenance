@@ -274,7 +274,7 @@ def make_associations() -> None:
         )
         ax.axvline(0, color="black", linewidth=1)
         ax.set_yticks(y, [coef_labels[k] for k in coef_order])
-        ax.set_xlabel("Standardized OLS coefficient ($\\beta$)")
+        ax.set_xlabel("Coverage change per 1-SD predictor increase")
         ax.set_title(f"Exploratory OLS: {topic_label} ($R^2={ols['r_squared']:.3f}$)")
         panel(ax, "c" if col == 0 else "d")
 
@@ -297,7 +297,7 @@ def make_benchmarks() -> None:
     ax.bar(x - width/2, data.exact_random_null_mean, width, color="#BDBDBD",
            edgecolor="black", linewidth=.4, label="Exact-length random")
     ax.bar(x + width/2, data.exact_random_official_mean, width,
-           color=[MODEL_COLORS[m] for m in data.model], edgecolor="black",
+           color="#4e79a7", edgecolor="black",
            linewidth=.4, label="Official")
     for i, p in enumerate(data.exact_random_mean_p):
         ax.text(i, max(data.exact_random_null_mean.iloc[i], data.exact_random_official_mean.iloc[i]) + .012,
@@ -313,7 +313,7 @@ def make_benchmarks() -> None:
     ax.bar(x - width/2, data.official_mean_coverage, width, color="#BDBDBD",
            edgecolor="black", linewidth=.4, label="Official")
     ax.bar(x + width/2, data.mean_optimized_coverage, width,
-           color=[MODEL_COLORS[m] for m in data.model], edgecolor="black",
+           color="#4e79a7", edgecolor="black",
            linewidth=.4, label="Mean-optimized")
     ax.set_xticks(x, data.label)
     ax.set_ylim(.42, .74)
@@ -326,7 +326,7 @@ def make_benchmarks() -> None:
     ax.bar(x - width/2, data.official_bottom_decile_mean, width, color="#BDBDBD",
            edgecolor="black", linewidth=.4, label="Official")
     ax.bar(x + width/2, data.tail_optimized_bottom_decile_mean, width,
-           color=[MODEL_COLORS[m] for m in data.model], edgecolor="black",
+           color="#4e79a7", edgecolor="black",
            linewidth=.4, label="Tail-optimized")
     ax.set_xticks(x, data.label)
     ax.set_ylim(.22, .46)
@@ -339,7 +339,7 @@ def make_benchmarks() -> None:
     ax.bar(x - width/2, 100 * data.official_exclusion_rate, width, color="#BDBDBD",
            edgecolor="black", linewidth=.4, label="Official")
     ax.bar(x + width/2, 100 * data.tail_optimized_exclusion_rate, width,
-           color=[MODEL_COLORS[m] for m in data.model], edgecolor="black",
+           color="#4e79a7", edgecolor="black",
            linewidth=.4, label="Tail-optimized")
     ax.set_xticks(x, data.label)
     ax.set_ylim(0, 22)
