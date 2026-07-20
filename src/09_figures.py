@@ -579,7 +579,7 @@ def make_crossfit_supplement() -> None:
         ax.bar(x-w/2, 100*summary.worst_cluster_official_exclusion, w,
                color="#BDBDBD", edgecolor="black", linewidth=.4, label="Official")
         ax.bar(x+w/2, 100*summary.worst_cluster_tail_optimized_exclusion, w,
-               color=[MODEL_COLORS[m] for m in summary.model], edgecolor="black",
+               color="#4e79a7", edgecolor="black",
                linewidth=.4, label="Tail-optimized")
         ax.set_xticks(x, order); ax.set_ylim(0, 100)
         ax.set_ylabel("Worst-cluster low coverage (%)")
