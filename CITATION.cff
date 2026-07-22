@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the associated preprint."
+title: "AI-provenance: analysis code and data for participatory provenance"
+type: software
+authors:
+  - family-names: Mahajan
+    given-names: Sachit
+    affiliation: ETH Zurich
+repository-code: "https://github.com/sachit27/AI-provenance"
+url: "https://github.com/sachit27/AI-provenance"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Participatory provenance as representational auditing for AI-mediated public consultation"
+  authors:
+    - family-names: Mahajan
+      given-names: Sachit
+      affiliation: ETH Zurich
+  year: 2026
+  journal: arXiv
+  doi: "10.48550/arXiv.2604.20711"
+  url: "https://arxiv.org/abs/2604.20711"
