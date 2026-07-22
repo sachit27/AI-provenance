@@ -1,5 +1,9 @@
 # Participatory Provenance
 
+[Paper on arXiv](https://arxiv.org/abs/2604.20711) ·
+[DOI](https://doi.org/10.48550/arXiv.2604.20711) ·
+[How to cite](CITATION.cff)
+
 This repository contains the data and analysis pipeline for studying how well
 official summaries represent the range of views submitted to a public
 consultation. The case study examines two policy areas from Canada's 2025 AI
@@ -20,11 +24,41 @@ screening measure; it does not imply deliberate exclusion.
   AI-mediated public consultation
 - **Author:** Sachit Mahajan, ETH Zurich
 - **Contact:** sachit.mahajan@gess.ethz.ch
+- **Preprint:** arXiv:2604.20711, version 3 (20 July 2026)
+- **DOI:** [10.48550/arXiv.2604.20711](https://doi.org/10.48550/arXiv.2604.20711)
+- **Journal status:** Under review
 - **Submission version:** `patterns-submission-v1`
 
 The submission tag identifies the code, data, and compact reference results
 provided for editorial and peer review. Later development can continue on
 `main` without changing that submitted version.
+
+## Main findings
+
+- The official summaries had higher observed mean semantic coverage than
+  exact-length random text in both topics and under both primary embedding
+  models. The chance comparison was statistically significant with
+  `text-embedding-3-large`, but not with `all-mpnet-base-v2`. The random-text
+  comparison is a chance floor, not a benchmark for readable summaries.
+- Low coverage was concentrated in particular semantic regions. It reached
+  80.6% in the Education region centered on criticism of educational
+  technology and 88.1% in the Trust region centered on distrust of technology
+  and oversight. No records met the same operational threshold in the
+  best-covered regions centered on workforce skills and building public trust.
+- Among respondents represented in both topics, low-coverage status was
+  associated across topics (odds ratio 6.54). This is a descriptive association,
+  not a causal estimate.
+- Same-budget, cross-fitted extractive benchmarks improved held-out mean
+  coverage by 0.057--0.090 and bottom-decile coverage by 0.047--0.081. These
+  benchmarks test feasible semantic coverage under the stated constraints;
+  they are not proposed as publication-ready summaries.
+
+![Participatory provenance workflow](docs/figures/participatory_provenance_overview.png)
+
+The framework links each response to its closest official-summary sentence,
+then examines the distribution and location of low semantic coverage. The UMAP
+panels are visualizations of the embedding space and are not used to calculate
+coverage or statistical tests.
 
 ## Repository structure
 
@@ -33,6 +67,15 @@ provided for editorial and peer review. Later development can continue on
 ├── data/
 │   ├── ai-strategy-raw-data-2025.csv
 │   └── data2.csv
+├── docs/
+│   └── figures/
+│       ├── coverage_benchmarks.png
+│       └── participatory_provenance_overview.png
+├── .github/
+│   └── workflows/
+│       └── repository-checks.yml
+├── scripts/
+│   └── check_repository.py
 ├── src/
 │   ├── 01_preprocess.py
 │   ├── 02_prepare_benchmarks.py
@@ -51,7 +94,9 @@ provided for editorial and peer review. Later development can continue on
 │   └── run_pipeline.py
 ├── results/
 │   ├── crossfit_confirmatory_summary.json
-│   └── input_hashes.sha256
+│   ├── input_hashes.sha256
+│   └── README.md
+├── CITATION.cff
 ├── LICENSE
 └── README.md
 ```
@@ -127,7 +172,8 @@ PROVENANCE_OUTPUT_DIR=outputs/analysis python src/verify_sentence_assignment.py
 ```
 
 The pipeline can require substantial memory and compute time, and OpenAI API
-calls may incur charges.
+calls may incur charges. Exact runtime and cost depend on hardware, service
+throughput, and whether embeddings are generated afresh.
 
 Randomized analytical stages use fixed seeds. Because some stages depend on
 external model services, a fresh run may differ slightly from the article's
@@ -153,6 +199,28 @@ large embedding files. It is a reference result, not an input to the pipeline.
 All eight primary paired-randomization comparisons have Holm-adjusted
 `p = 0.0016`. The JSON file retains the unrounded estimates, intervals,
 chance comparisons, repeated-partition ranges, and worst-region diagnostics.
+Definitions and interpretation notes for these outputs are provided in
+[`results/README.md`](results/README.md).
+
+![Held-out same-budget benchmark results](docs/figures/coverage_benchmarks.png)
+
+The benchmark comparisons use held-out records and the official summary's
+sentence-level word budgets. Error bars show conditional participant-level
+bootstrap intervals. See the paper and supplement for the complete design and
+inferential specification.
+
+## Repository checks
+
+The lightweight check verifies the two public data-file hashes, the structure
+of the compact confirmatory results, the eight-test primary family, and Python
+syntax without requiring API credentials:
+
+```bash
+python scripts/check_repository.py
+```
+
+GitHub Actions runs the same credential-free check on pushes and pull requests.
+It does not rerun the model-dependent analysis.
 
 ## Data
 
@@ -177,3 +245,11 @@ and are defined verbatim in `src/config.py`.
 
 The analysis code is available under the MIT License. The included public data
 remain subject to their source licence and terms.
+
+## Citation
+
+Please cite the associated preprint when using this code or data:
+
+> Mahajan, S. (2026). Participatory provenance as representational auditing
+> for AI-mediated public consultation. arXiv:2604.20711.
+> https://doi.org/10.48550/arXiv.2604.20711
