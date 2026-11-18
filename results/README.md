@@ -13,7 +13,7 @@ a fresh run. These files are not inputs to the analysis pipeline.
   CSV files in `data/`.
 
 - `crossfit_confirmatory_summary.csv` provides the same Canadian reference estimates in tabular form.
-- `analyses/` contains the additional analyses described in [the analyses results guide](analyses/README.md).
+- `reference/` contains the Scottish benchmarks, generated summaries, stance and idea analyses, controlled tests, and distance comparisons. See the [study reference results guide](reference/README.md) for the file index.
 
 ## Terms used in the results
 

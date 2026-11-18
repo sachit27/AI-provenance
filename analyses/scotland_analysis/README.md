@@ -1,4 +1,4 @@
-# Scottish replication
+# Scottish consultation pipeline
 
 This copy of the Canadian pipeline uses the Scottish inputs prepared by `analyses/scotland/code/prepare.py`. See [the analysis workflow](../README.md) for the download and analysis order.
 

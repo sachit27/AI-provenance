@@ -1,6 +1,6 @@
 # Participatory provenance
 
-Code and reference results for *Participatory provenance as representational auditing for AI-mediated public consultation*, by Sachit Mahajan, ETH Zurich.
+Analysis code and results for the complete study *Participatory provenance as representational auditing for AI-mediated public consultation*, by Sachit Mahajan, ETH Zurich.
 
 [Preprint](https://arxiv.org/abs/2604.20711) · [Citation](CITATION.cff) · [Analysis workflow](analyses/README.md) · [Changes](CHANGELOG.md)
 
@@ -12,13 +12,27 @@ Semantic coverage is a screening measure. A high score can persist when a senten
 
 ## Results
 
-- In Canada, 5,253 retained records represent 2,861 contributors across Education and Skills and Safe AI and Public Trust. Low coverage concentrates in regions centered on criticism and distrust.
-- Same-budget extraction improves held-out mean and bottom-decile coverage in both countries. The Scottish analysis uses 4,169 retained answers across six questions. These are comparisons of embedding coverage under word limits, with no prose-coherence objective.
-- The Canadian official passages exceed the random-window mean with statistical significance under OpenAI embeddings. None of the Scottish passages does so. Random windows provide a chance comparison and may contain sentence fragments.
-- Scottish Q7 respondents who opposed practitioner licensing received lower semantic coverage than supporters. The observed difference is −0.057, with a 95% bootstrap interval of [−0.080, −0.036] under OpenAI embeddings.
-- Patterns of low coverage largely persist across model-averaged summaries. The controlled comparison includes 27 budget-compliant summaries. Nine Q21 attempts are reported separately because seven failed the sentence budget.
+### Canadian AI Strategy consultation
 
-![Coverage, summarizer agreement and stance comparisons](docs/figures/study_results.png)
+The Canadian analysis covers 5,253 retained records from 2,861 contributors across Education and Skills and Safe AI and Public Trust. With `text-embedding-3-large`, the official passages had mean coverage of 0.514 for Education and 0.533 for Trust. Low coverage was concentrated in groups of responses centered on criticism of educational technology and distrust of technology and oversight. [Canadian benchmark results](results/crossfit_confirmatory_summary.csv)
+
+![Canadian response regions and coverage distributions for Education and Trust](docs/figures/participatory_provenance_overview.png)
+
+With the same word limits as the official passages, extractive benchmarks raised mean coverage by 0.065 for Education and 0.057 for Trust on held-out responses with `text-embedding-3-large`. The average for the lowest-scoring tenth also improved with both embedding models. The official passages exceeded the random-text benchmark on mean coverage with `text-embedding-3-large`.
+
+![Canadian chance and same-budget benchmarks for Education and Trust under both embedding models](docs/figures/coverage_benchmarks.png)
+
+### Scottish consultation on non-surgical cosmetic procedures
+
+Across 4,169 retained answers to six questions, same-budget extractive benchmarks improved mean coverage and the average for the lowest-scoring tenth under both embedding models. None of the official passages significantly exceeded the random-text benchmark on mean coverage. For Q7, respondents who opposed a practitioner licensing requirement had lower coverage than supporters (difference −0.057, 95% bootstrap interval [−0.080, −0.036] with `text-embedding-3-large`). [Scottish benchmark results](results/reference/scotland_analysis/scotland_analysis_summary.csv) · [Stated positions](results/reference/stance_groups/results_primary_official.csv)
+
+### Summary comparisons and checks on the coverage measure
+
+- Coverage rankings generally agreed between official summaries and model-averaged summaries. The comparison used 27 generated summaries that met the length limits for Canadian Education, Canadian Trust and Scottish Q7. Scottish Q21 was reported separately after seven of nine attempts missed the sentence count. [Budget checks](results/reference/llm_summaries/results/budget_compliance.csv) · [Rank correlations](results/reference/llm_summaries/results/spearman.csv)
+- In controlled tests using responses from both consultations, removing a passage lowered similarity more than reversing its stated position. In the exploratory Canadian idea audit, automated judges labeled opposing or concerned ideas missed more often and recognized their planted paraphrases less reliably. [Controlled tests](results/reference/provenance_diagnostics/results) · [Idea audit](results/reference/idea_audit)
+- Wasserstein-1 and Wasserstein-2 gave similar rankings of the official passages and random references in both consultations. Agreement with maximum mean discrepancy varied with the kernel bandwidth. [Distance comparison results](results/reference/metric_sensitivity/results)
+
+![Scottish held-out gains and licensing positions, summary agreement in both consultations, and the Canadian idea audit](docs/figures/study_results.png)
 
 ## Repository contents
 
@@ -26,13 +40,13 @@ Semantic coverage is a screening measure. A high score can persist when a senten
 |---|---|
 | `data/` | The two Canadian source CSV files |
 | `src/` | Canadian analysis pipeline and figure scripts |
-| `analyses/` | Scottish replication, generation prompts, stance analysis, idea audit, controlled diagnostics and distance sensitivity |
+| `analyses/` | Scottish consultation pipeline, summary generation, stance analysis, idea audit, controlled diagnostics and distance comparisons |
 | `results/` | Canadian reference results and input hashes |
 | `results/reference/` | Aggregate study results, final generated summaries and file hashes |
 | `docs/figures/` | Figures from the study |
 | `scripts/` | Checks that run without API credentials |
 
-The complete study code and reference results are available at the `v2026.11.2` tag.
+The code and results for both consultations are available in this repository. The [analysis workflow](analyses/README.md) describes how to run the full study.
 
 ## Setup
 
@@ -57,11 +71,11 @@ Start by preparing and analyzing the Canadian consultation.
 python src/run_pipeline.py --output-root src/analysis
 ```
 
-The analysis scripts use `src/analysis` for the Canadian artifacts and `analyses/scotland_analysis/analysis` for Scotland. The [analysis workflow](analyses/README.md) give the download, preparation and execution order. Model calls require network access and may incur charges. Fixed analytical seeds and cached requests support repeat runs, but external services and model updates can change regenerated results.
+The analysis scripts use `src/analysis` for the Canadian outputs and `analyses/scotland_analysis/analysis` for Scotland. The [analysis workflow](analyses/README.md) gives the download, preparation and execution order. Model calls require network access and may incur charges. Fixed analytical seeds and cached requests support repeat runs, but external services and model updates can change regenerated results.
 
 ## Reference results and checks
 
-Aggregate outputs are included for inspection without downloading embeddings or running models. The [results guide](results/reference/README.md) maps them to the analyses and records the release scope.
+The [results guide](results/README.md) links to the Canadian, Scottish and comparative outputs. You can inspect these files without downloading embeddings or running models.
 
 ```bash
 python scripts/check_repository.py

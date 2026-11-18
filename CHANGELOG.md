@@ -1,5 +1,9 @@
 # Changes
 
+## Study release 2026.11.3
+
+The README presents the Canadian and Scottish findings alongside the summary comparisons and checks on the coverage measure. It links each result to the supporting files.
+
 ## Study release 2026.11.2
 
 The table generator follows the published supplement numbering. Its Scottish chance benchmark caption describes each draw as a complete pseudo-summary.
