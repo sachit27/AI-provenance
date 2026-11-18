@@ -18,4 +18,4 @@ jobs:
       - name: Verify public repository
         run: |
           python scripts/check_repository.py
-          python scripts/check_revision.py
+          python scripts/check_study.py

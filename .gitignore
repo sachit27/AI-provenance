@@ -5,33 +5,33 @@ __pycache__/
 *.py[cod]
 .DS_Store
 
-# Locally generated revision inputs and outputs
-revision/**/analysis/
-revision/**/inputs/
-revision/**/raw/
-revision/**/sources/
-revision/**/embeddings/
-revision/**/targets/
-revision/**/cache/
-revision/**/work/
-revision/**/outputs/
-revision/**/scores/
-revision/**/results/
-revision/**/*.sqlite*
-revision/**/*.npz
-revision/**/*.npy
-revision/**/*.parquet
-revision/**/records.jsonl
-revision/**/exclusions.json
-revision/dataset_audit/scotland/*.json
-!revision/dataset_audit/scotland/official_findings_sections.json
-revision/stance_groups/*.csv
-revision/stance_groups/parse_qa.json
-revision/idea_audit/*.csv
-revision/scotland_original/*.csv
-revision/scotland_original/sensitivity_restored/*.csv
+# Locally generated analyses inputs and outputs
+analyses/**/analysis/
+analyses/**/inputs/
+analyses/**/raw/
+analyses/**/sources/
+analyses/**/embeddings/
+analyses/**/targets/
+analyses/**/cache/
+analyses/**/work/
+analyses/**/outputs/
+analyses/**/scores/
+analyses/**/results/
+analyses/**/*.sqlite*
+analyses/**/*.npz
+analyses/**/*.npy
+analyses/**/*.parquet
+analyses/**/records.jsonl
+analyses/**/exclusions.json
+analyses/dataset_audit/scotland/*.json
+!analyses/dataset_audit/scotland/official_findings_sections.json
+analyses/stance_groups/*.csv
+analyses/stance_groups/parse_qa.json
+analyses/idea_audit/*.csv
+analyses/scotland_analysis/*.csv
+analyses/scotland_analysis/sensitivity_restored/*.csv
 src/analysis/
 
 # Archived final summaries are part of the reference release.
-!results/revision/llm_summaries/outputs/
-!results/revision/llm_summaries/outputs/**
+!results/reference/llm_summaries/outputs/
+!results/reference/llm_summaries/outputs/**

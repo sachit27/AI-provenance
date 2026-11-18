@@ -2,11 +2,11 @@
 
 Code and reference results for *Participatory provenance as representational auditing for AI-mediated public consultation*, by Sachit Mahajan, ETH Zurich.
 
-[Preprint](https://arxiv.org/abs/2604.20711) · [Citation](CITATION.cff) · [Revision methods and commands](revision/README.md) · [Changes](CHANGELOG.md)
+[Preprint](https://arxiv.org/abs/2604.20711) · [Citation](CITATION.cff) · [Analysis workflow](analyses/README.md) · [Changes](CHANGELOG.md)
 
 This study asks how semantic coverage is distributed across the people who contribute to a public consultation. It pairs each response with its closest official-summary sentence, examines the lower tail of coverage, and tests whether higher coverage is feasible within the same word limits.
 
-The revised analysis covers two themes from Canada's 2025 AI Strategy consultation and six written questions from Scotland's 2024–25 consultation on non-surgical cosmetic procedures. It also compares summaries from three language models, examines coverage by respondents' stated positions, tests the limitations of cosine similarity, and compares distribution distances.
+The study covers two themes from Canada's 2025 AI Strategy consultation and six written questions from Scotland's 2024–25 consultation on non-surgical cosmetic procedures. It also compares summaries from three language models, examines coverage by respondents' stated positions, tests the limitations of cosine similarity, and compares distribution distances.
 
 Semantic coverage is a screening measure. A high score can persist when a sentence reverses a position or drops a condition. The paper therefore distinguishes semantic proximity from faithful representation and reports the limitations of its automated idea judgments.
 
@@ -18,7 +18,7 @@ Semantic coverage is a screening measure. A high score can persist when a senten
 - Scottish Q7 respondents who opposed practitioner licensing received lower semantic coverage than supporters. The observed difference is −0.057, with a 95% bootstrap interval of [−0.080, −0.036] under OpenAI embeddings.
 - Patterns of low coverage largely persist across model-averaged summaries. The controlled comparison includes 27 budget-compliant summaries. Nine Q21 attempts are reported separately because seven failed the sentence budget.
 
-![Results added in the revision](docs/figures/revision_results.png)
+![Coverage, summarizer agreement and stance comparisons](docs/figures/study_results.png)
 
 ## Repository contents
 
@@ -26,13 +26,13 @@ Semantic coverage is a screening measure. A high score can persist when a senten
 |---|---|
 | `data/` | The two Canadian source CSV files |
 | `src/` | Canadian analysis pipeline and figure scripts |
-| `revision/` | Scottish replication, generation prompts, stance analysis, idea audit, controlled diagnostics and distance sensitivity |
+| `analyses/` | Scottish replication, generation prompts, stance analysis, idea audit, controlled diagnostics and distance sensitivity |
 | `results/` | Canadian reference results and input hashes |
-| `results/revision/` | Aggregate revision results, final generated summaries and file hashes |
+| `results/reference/` | Aggregate study results, final generated summaries and file hashes |
 | `docs/figures/` | Figures from the study |
 | `scripts/` | Checks that run without API credentials |
 
-The original submission remains available at `patterns-submission-v1`. The November 2026 revision is tagged `revision-2026-11` and adds analyses alongside that pipeline. The linked arXiv preprint may precede these additions.
+The complete study code and reference results are available at the `v2026.11` tag.
 
 ## Setup
 
@@ -44,28 +44,28 @@ cd AI-provenance
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r src/requirements-lock.txt
-pip install -r revision/requirements.txt
+pip install -r analyses/requirements.txt
 export OPENAI_API_KEY="your-key"
 ollama pull nomic-embed-text
 ```
 
 Ollama must be installed and running. Controlled generation also uses `qwen3.6:35b-a3b` and `glm-4.7-flash:Q4_K_M`. Their recorded model digests are included with the generated summaries.
 
-The Canadian pipeline can be run independently.
+Start by preparing and analyzing the Canadian consultation.
 
 ```bash
 python src/run_pipeline.py --output-root src/analysis
 ```
 
-Revision scripts use `src/analysis` for the Canadian artifacts and `revision/scotland_original/analysis` for Scotland. The [revision instructions](revision/README.md) give the download, preparation and execution order. Model calls require network access and may incur charges. Fixed analytical seeds and cached requests support repeat runs, but external services and model updates can change regenerated results.
+The analysis scripts use `src/analysis` for the Canadian artifacts and `analyses/scotland_analysis/analysis` for Scotland. The [analysis workflow](analyses/README.md) give the download, preparation and execution order. Model calls require network access and may incur charges. Fixed analytical seeds and cached requests support repeat runs, but external services and model updates can change regenerated results.
 
 ## Reference results and checks
 
-Aggregate outputs are included for inspection without downloading embeddings or running models. The [results guide](results/revision/README.md) maps them to the analyses and records the release scope.
+Aggregate outputs are included for inspection without downloading embeddings or running models. The [results guide](results/reference/README.md) maps them to the analyses and records the release scope.
 
 ```bash
 python scripts/check_repository.py
-python scripts/check_revision.py
+python scripts/check_study.py
 ```
 
 GitHub Actions runs both checks. They verify file hashes, result structure, sentence budgets and Python syntax. They do not reproduce model-dependent analyses or validate automated judgments against human annotation.

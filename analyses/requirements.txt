@@ -1,0 +1,16 @@
+# Dependencies for the consultation analyses and evaluation experiments.
+-r ../src/requirements.txt
+numpy>=1.26,<3
+pandas>=2.1,<3
+pyarrow>=14,<24
+scipy>=1.12,<2
+scikit-learn>=1.4,<2
+POT>=0.9.5,<0.10
+sentence-transformers>=3,<6
+openai>=1.30,<3
+python-dotenv>=1,<2
+tiktoken>=0.7,<1
+beautifulsoup4>=4.12,<5
+lxml>=5,<7
+statsmodels>=0.14,<0.15
+matplotlib>=3.8,<4
