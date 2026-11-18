@@ -1,5 +1,9 @@
 # Changes
 
+## Study release 2026.11.2
+
+The table generator follows the published supplement numbering. Its Scottish chance benchmark caption describes each draw as a complete pseudo-summary.
+
 ## Study release 2026.11
 
 The release covers the Canadian AI Strategy consultation and Scottish non-surgical cosmetic procedures consultation, together with controlled summarization, closed-answer stance comparisons, automated idea judgments, synthetic passage tests and distribution-distance sensitivity.

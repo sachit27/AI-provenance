@@ -485,7 +485,7 @@ tabB = ('\\begin{tabular}{llcccc}\n\\toprule\nQuestion & Embedding & Mean-optimi
 T['S17'] = ('\\begin{table}[H]\n\\revon\n\\centering\\small\n\\caption{\\textbf{Scottish consultation: coverage of the official text and held-out improvement, by question and embedding model.} '
   'Coverage is the highest cosine similarity between a respondent\'s answer and any sentence of the official text. '
   '\\textbf{Panel A:} $N$ is the number of retained respondents; regions are the clusters used for the regional analyses; mean coverage, bottom-decile mean (average of the lowest-covered 10\\% of respondents), low-coverage rate (share of respondents more than one standard deviation below the mean) and Gini coefficient (inequality of coverage) describe the official text. '
-  'The random-window columns give the mean for 1,000 random text windows with the same sentence and word budget as the official text, and the $p$-value is the share of random windows doing at least as well as the official text (a small value means the official text beats chance; a value near 1 means random windows do better). '
+  'The random benchmark averages coverage over 1,000 pseudo-summaries, each containing one random window per official sentence, matched to its word count. The one-sided $p$-value is the number of pseudo-summaries that match or exceed the official score plus one, divided by 1,001. '
   '\\textbf{Panel B:} gain is the difference between a summary selected on training respondents and evaluated on held-out respondents (5$\\times$5-fold cross-fitting, same length budget) and the official text; positive values mean that the official text could have covered held-out respondents better. The mean-optimized selection targets mean coverage and the tail-oriented selection targets the bottom-decile mean. Intervals are 95\\% participant-bootstrap intervals; Holm $p$ corrects the one-sided test across the 24 primary comparisons. Nomic is a robustness model and has coverage statistics only (dashes).}\n'
   '\\label{tab:s17}\n{' + tabA + '}\n\\vspace{1.2em}\n\n' + tabB + '\n\\end{table}\n')
 
@@ -512,9 +512,9 @@ for ds, be, dim, w1, w2, mmd, r1, r2, c1, c2 in rows:
 T['S23'] = longtab(body, r'\textbf{Distances between the distribution of respondents and the official summary.} As an alternative to coverage, this table reports how far the official text lies from the cloud of respondent answers in embedding space, after reducing the embeddings to 20, 50 or 100 principal components fitted on respondents only. W1 and W2 are Wasserstein (optimal-transport) distances and MMD$^2$ is the squared maximum mean discrepancy with a median-distance bandwidth; smaller values mean a closer match. ``Rank $\rho$\'\' columns are Spearman correlations, over the official text and 20 random text windows of the same length, between the ranking by W1 and by W2 and between the ranking by MMD$^2$ and by W2 (values near 1 mean the metrics order the texts alike). ``Official closer than random\'\' counts the random windows (out of 20) that the official text beats on W2 and on MMD$^2$; nomic has no random references (dashes). The last two columns, available only for the Canadian datasets, are rank correlations between the metrics when ranking the respondent groups (regions) by their distance to the official text. Distances are only comparable within one dataset, embedding model and dimension. Unlike Table~\ref{tab:transport}, which fits PCA jointly on participant and official-summary embeddings, this comparison fits PCA on participants alone so that all targets use the same axes; this accounts for the different Canadian W2 values.',
     'tab:s23', 'L{1.7cm}L{1.4cm}L{0.8cm}L{0.9cm}L{0.9cm}L{1.0cm}L{0.9cm}L{1.0cm}L{1.0cm}L{1.0cm}L{1.0cm}L{1.0cm}', 'Dataset & Embedding & PCA dims & Official W1 & Official W2 & Official MMD$^2$ & W1--W2 rank $\\rho$ & MMD$^2$--W2 rank $\\rho$ & Closer than random, W2 & Closer than random, MMD$^2$ & Group rank $\\rho$, W1--W2 & Group rank $\\rho$, MMD$^2$--W2', small='\\scriptsize')
 
-# Keys/TeX labels are stable identifiers from the original revision.
+# Keys/TeX labels are stable identifiers for the table fragments.
 # Printed numbers follow first citation in main.tex; insert by label.
-printed_numbers = {'S16': 1, 'S15': 14, 'S17': 15, 'S18': 16, 'S19': 17, 'S20': 18, 'S22': 19, 'S21': 20, 'S23': 23}
+printed_numbers = {'S16': 1, 'S17': 14, 'S18': 15, 'S19': 16, 'S15': 17, 'S20': 18, 'S22': 19, 'S21': 20, 'S23': 23}
 order = list(printed_numbers)
 
 # Keep oversized Scottish panels on separate pages with the same table number.
@@ -524,7 +524,7 @@ T['S15'] = T['S15'].replace('\\begin{tabular}', '\\resizebox{\\linewidth}{!}{\\b
 T['S21'] = T['S21'].replace('\\setlength{\\tabcolsep}{3pt}', '\\setlength{\\tabcolsep}{2pt}')
 
 with open(os.path.join(OUT, 'supp_tables_new.tex'), 'w', encoding='utf8') as f:
-    f.write('% Auto-generated revision table snippets. Insert by stable label, not as one contiguous block.\n\n')
+    f.write('% Generated supplementary table fragments. Insert each fragment by its stable label.\n\n')
     for k in order:
         f.write(f'% ---------------- Table S{printed_numbers[k]} (stable key {k})\n' + '\\setcounter{table}{' + str(printed_numbers[k] - 1) + '}\n' + T[k] + '\n')
 print('tables written; missing:', MISSING)
