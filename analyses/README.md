@@ -83,13 +83,35 @@ The script uses the datasets exported in steps 1 and 2, with MPNet, OpenAI and N
 ## 7. Distribution distances
 
 ```bash
-python analyses/metric_sensitivity/run.py --canada education --backend openai --random-references 20 --output analyses/metric_sensitivity/results/canada_education_openai
+python analyses/metric_sensitivity/run.py --canada education --backend openai --random-references 20 --labels analyses/canada/datasets/education/labels.npy --output analyses/metric_sensitivity/results/canada_education_openai
 python analyses/metric_sensitivity/run.py --original-root analyses/scotland_analysis/analysis --original-pipeline analyses/scotland_analysis/pipeline --topic q7 --backend openai --random-references 20 --output analyses/metric_sensitivity/results/scotland_analysis_q7_openai
 ```
 
-For Canada, repeat for Education and Trust with `openai` and `mpnet`. For Scotland, repeat for all six questions with both models. The Scottish Nomic runs use `--backend nomic_embed_text --random-references 0`. There are 22 archived configurations in total. Each evaluates 20, 50 and 100 principal components. The PCA basis is fitted on participant embeddings alone, which differs from the original joint participant/official-summary transport calculation.
+For Canada, repeat for Education and Trust with `openai` and `mpnet`, using the matching topic’s `labels.npy` from step 1. For Scotland, repeat for all six questions with both models. The Scottish Nomic runs use `--backend nomic_embed_text --random-references 0`. There are 22 archived configurations in total. Each evaluates 20, 50 and 100 principal components. The PCA basis is fitted on participant embeddings alone, which differs from the original joint participant/official-summary transport calculation.
 
 W1 and W2 are exact transport distances. MMD² is the biased empirical V-statistic, including self-pairs, at 0.5, 1 and 2 times the median participant distance. Ranking correlations compare the official target and 20 random references within each setting. Canadian regional comparisons are saved in the JSON outputs.
+
+## 8. Figure 7 and supplementary tables
+
+After running steps 1–7 from the repository root, run:
+
+```bash
+python analyses/metric_sensitivity/summarize.py
+python scripts/make_fig7_tables.py --build-dir outputs/paper
+```
+
+The generator writes `fig7_extensions.png` and `supp_tables_new.tex`. The TeX file contains table fragments for incorporation into the supplement.
+
+| Input under `analyses/` | How to create it |
+|---|---|
+| `scotland_analysis/scotland_analysis_summary.csv` and `scotland_analysis/analysis/q7/participant_coverage.csv` | Run the Scottish pipeline in step 2. |
+| `llm_summaries/RESULTS.md` | Run `score.py` and `analyze.py` in step 3. Use the tagged summary archive to score the reported generated texts. |
+| `stance_groups/respondent_groups.csv` and `stance_groups/results_all.csv` | Run the three closed-answer commands in step 4. |
+| `idea_audit/RESULTS.md`, `validation_table.csv`, `summary_shares.csv`, `sensitivity.csv`, `stance_test_results.csv` and `work/<topic>/` Parquet files | Run step 5, including `validate.py`, `report.py` and `stance_test.py`. |
+| `metric_sensitivity/FINDINGS.md` | Run the command above. It reads the saved distance outputs from step 7. To compare with the reported distances, use `--results-root results/reference/metric_sensitivity/results` with `summarize.py`. |
+| `scotland/datasets/<question>/questions.json` | Included in the release and rebuilt in step 2. |
+
+These commands generate response-level inputs locally. The generator contains checks against the reported analysis; a fresh model run can change classifications or scores and trigger those checks. The [reference archive](../results/reference/README.md) contains the reported aggregate outputs. For the published rendering of Figure 7, see [the study figure](../docs/figures/study_results.png).
 
 ## Reproduction limits
 

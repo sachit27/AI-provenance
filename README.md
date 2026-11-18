@@ -32,7 +32,7 @@ Semantic coverage is a screening measure. A high score can persist when a senten
 | `docs/figures/` | Figures from the study |
 | `scripts/` | Checks that run without API credentials |
 
-The complete study code and reference results are available at the `v2026.11` tag.
+The complete study code and reference results are available at the `v2026.11.1` tag.
 
 ## Setup
 
