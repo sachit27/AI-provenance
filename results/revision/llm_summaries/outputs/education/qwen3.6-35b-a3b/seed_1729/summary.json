@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1729,
+  "sentences": [
+    "Respondents prioritize critical thinking and media literacy over pure technical skills to navigate AI limitations.",
+    "Public libraries are widely endorsed as equitable hubs for delivering accessible, multilingual training across demographics.",
+    "Significant skepticism exists regarding AI’s environmental impact and bias, with critics advocating for regulation rather than adoption.",
+    "Equity requires addressing broader socioeconomic barriers like housing alongside digital infrastructure gaps in rural areas.",
+    "Proponents emphasize micro-credentials and K-12 integration to foster adaptable workforces capable of ethical judgment.",
+    "Ultimately, success demands balancing upskilling with robust transparency measures to protect democratic integrity and worker rights."
+  ],
+  "text": "Respondents prioritize critical thinking and media literacy over pure technical skills to navigate AI limitations. Public libraries are widely endorsed as equitable hubs for delivering accessible, multilingual training across demographics. Significant skepticism exists regarding AI’s environmental impact and bias, with critics advocating for regulation rather than adoption. Equity requires addressing broader socioeconomic barriers like housing alongside digital infrastructure gaps in rural areas. Proponents emphasize micro-credentials and K-12 integration to foster adaptable workforces capable of ethical judgment. Ultimately, success demands balancing upskilling with robust transparency measures to protect democratic integrity and worker rights.",
+  "n_sentences": 6,
+  "n_words": 92,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "183591207e35ce65c84772287e79edbe88ae7af9c7fcb36461f1c9c414736296",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

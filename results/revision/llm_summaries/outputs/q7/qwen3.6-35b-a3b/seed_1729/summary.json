@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1729,
+  "sentences": [
+    "Respondents are deeply divided on whether individual practitioner licensing is necessary for Group 1 procedures.",
+    "A strong majority supports mandatory licensing to ensure public safety, accountability, and standardized competency checks.",
+    "They argue this closes loopholes exploited by unqualified operators and prevents a two-tier regulatory system.",
+    "Conversely, significant opposition arises from those who view such licensing as redundant if premises are already regulated.",
+    "Critics warn that duplicate local authority oversight creates excessive administrative burdens and financial strain on small businesses.",
+    "Others contend that existing professional bodies provide sufficient oversight without the need for additional bureaucratic layers.",
+    "There is widespread consensus that current regulations are insufficient, yet opinions diverge sharply on the implementation mechanism.",
+    "Concerns remain about inconsistent fees, enforcement capacity, and the risk of driving services underground."
+  ],
+  "text": "Respondents are deeply divided on whether individual practitioner licensing is necessary for Group 1 procedures. A strong majority supports mandatory licensing to ensure public safety, accountability, and standardized competency checks. They argue this closes loopholes exploited by unqualified operators and prevents a two-tier regulatory system. Conversely, significant opposition arises from those who view such licensing as redundant if premises are already regulated. Critics warn that duplicate local authority oversight creates excessive administrative burdens and financial strain on small businesses. Others contend that existing professional bodies provide sufficient oversight without the need for additional bureaucratic layers. There is widespread consensus that current regulations are insufficient, yet opinions diverge sharply on the implementation mechanism. Concerns remain about inconsistent fees, enforcement capacity, and the risk of driving services underground.",
+  "n_sentences": 8,
+  "n_words": 126,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 3,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "8a6381a8651a4d5d7b442149babbb0e518168719d81169e56d0f3ced8683a36b",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1730,
+  "sentences": [
+    "Respondents demand enforceable, risk-based regulations and clear liability to mitigate risks like bias and privacy violations.",
+    "A majority supports \"human-in-the-loop\" oversight and independent auditing for accountability.",
+    "There is widespread consensus that AI education and literacy are essential for public understanding.",
+    "Key recommendations include strict data governance to protect copyright and privacy, as well as environmental safeguards.",
+    "Public engagement must be inclusive, with the federal government leading standards and civil society driving education initiatives.",
+    "To build confidence, stakeholders emphasize honest communication and proactive participation over industry-led promotion."
+  ],
+  "text": "Respondents demand enforceable, risk-based regulations and clear liability to mitigate risks like bias and privacy violations. A majority supports \"human-in-the-loop\" oversight and independent auditing for accountability. There is widespread consensus that AI education and literacy are essential for public understanding. Key recommendations include strict data governance to protect copyright and privacy, as well as environmental safeguards. Public engagement must be inclusive, with the federal government leading standards and civil society driving education initiatives. To build confidence, stakeholders emphasize honest communication and proactive participation over industry-led promotion.",
+  "n_sentences": 6,
+  "n_words": 86,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 5,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "215517b4bbaa6769cac8ba32aa272c3de726234540eca8d4ae6ecf33d7fb6ebf",
+  "created_utc": "2026-10-24T13:07:39+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "dataset": "Canada AI Strategy 2025",
+  "topic": "education",
+  "n": 2496,
+  "record_digest": "d00265a3fdaf49b81999b988ae65d1a1373bb3468b3ef861f639eaaa7ed44608",
+  "summary_digest": "1ec4f92b6ec4d248db1c944dbbf35b9b421cdee5604680e5185d9b3a27544c4d",
+  "preprocessing": "submitted retained corpus, unchanged",
+  "source_clean_sha256": "41f3baf40c5494b2df00a4ab890659f86571a28dbeec88ddb23590a0d85a0f53"
+}

@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q4",
+  "label": "Procedure grouping and regulation",
+  "n": 1021,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "ee4b6c4294ce45a4ae1e93bd479afcc0062b5d6c8b8851a57e5fe928151c7aff",
+  "summary_digest": "25d45d2eda412d209336fbbf82e66e0eecf3ecebbcfc5d0cf2e1fe0fcb75c88e",
+  "summary_words": 2135,
+  "summary_sentences": 76
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1730,
+  "sentences": [
+    "Respondents are sharply polarized, with many rejecting AI trust entirely due to ethical and environmental harms.",
+    "Those supporting regulation demand strict liability, transparency, and independent oversight to protect rights.",
+    "Public libraries and civil society are identified as trusted leaders for literacy and engagement.",
+    "Government must enforce robust frameworks rather than promote adoption blindly.",
+    "Trust is viewed as earned through demonstrated safety and accountability, not marketing.",
+    "Effective governance requires protecting intellectual property, data sovereignty, and labor rights alongside rigorous risk management."
+  ],
+  "text": "Respondents are sharply polarized, with many rejecting AI trust entirely due to ethical and environmental harms. Those supporting regulation demand strict liability, transparency, and independent oversight to protect rights. Public libraries and civil society are identified as trusted leaders for literacy and engagement. Government must enforce robust frameworks rather than promote adoption blindly. Trust is viewed as earned through demonstrated safety and accountability, not marketing. Effective governance requires protecting intellectual property, data sovereignty, and labor rights alongside rigorous risk management.",
+  "n_sentences": 6,
+  "n_words": 80,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "215517b4bbaa6769cac8ba32aa272c3de726234540eca8d4ae6ecf33d7fb6ebf",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

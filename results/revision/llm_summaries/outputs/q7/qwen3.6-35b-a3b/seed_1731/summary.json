@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1731,
+  "sentences": [
+    "Respondents express deep division regarding individual practitioner licensing for Group 1 procedures, particularly concerning exemptions for Healthcare Improvement Scotland-regulated settings.",
+    "A significant portion opposes mandatory licenses in HIS settings, arguing that existing regulations create redundant administrative burdens and financial costs.",
+    "Conversely, many advocates urge universal licensing to ensure accountability and prevent regulatory gaps when practitioners move between different premises types.",
+    "Proponents emphasize that individual licensing standardizes training quality and mitigates risks from unregulated short courses lacking proper competency checks.",
+    "There is strong sentiment that current Group 1 classifications underestimate risk, with calls to reclassify invasive treatments to higher-risk groups.",
+    "Critics also highlight inequities where non-medical practitioners face stricter barriers than medical professionals within HIS-regulated environments.",
+    "Operational concerns focus on resource implications for local authorities and the potential for regulation to drive the industry underground.",
+    "Respondents demand clarity on competency standards, consistent enforcement mechanisms, and balanced fees to protect both public safety and small businesses."
+  ],
+  "text": "Respondents express deep division regarding individual practitioner licensing for Group 1 procedures, particularly concerning exemptions for Healthcare Improvement Scotland-regulated settings. A significant portion opposes mandatory licenses in HIS settings, arguing that existing regulations create redundant administrative burdens and financial costs. Conversely, many advocates urge universal licensing to ensure accountability and prevent regulatory gaps when practitioners move between different premises types. Proponents emphasize that individual licensing standardizes training quality and mitigates risks from unregulated short courses lacking proper competency checks. There is strong sentiment that current Group 1 classifications underestimate risk, with calls to reclassify invasive treatments to higher-risk groups. Critics also highlight inequities where non-medical practitioners face stricter barriers than medical professionals within HIS-regulated environments. Operational concerns focus on resource implications for local authorities and the potential for regulation to drive the industry underground. Respondents demand clarity on competency standards, consistent enforcement mechanisms, and balanced fees to protect both public safety and small businesses.",
+  "n_sentences": 8,
+  "n_words": 154,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "2819bc08af6515cff7b8421ec3c3514ad853c754d266b40cf32858fbc8f93659",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

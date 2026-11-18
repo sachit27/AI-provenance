@@ -1,0 +1,15 @@
+{
+  "sentences": [
+    "The respondents had a clear view: Canada needs a dual approach to skills development involving broad digital literacy for all citizens and advanced AI expertise for specialized roles.",
+    "Respondents called for integrating AI education across K–12 and post-secondary curricula, offering short, stackable credentials, and investing in lifelong learning.",
+    "Public infrastructure must ensure equitable access to these opportunities.",
+    "Critical thinking, ethical reasoning and interdisciplinary skills were emphasized over narrow technical training.",
+    "Respondents urged Canada to develop a national AI literacy strategy, workplace training programs and public campaigns to demystify AI.",
+    "Concerns include job displacement, environmental harm and cognitive dependency, reinforcing the need for human-centred education."
+  ],
+  "source_url": "https://ised-isde.canada.ca/",
+  "source_sections": [
+    "submitted official summary"
+  ],
+  "provenance": "pipeline/config.py verbatim submitted transcription; AiStrategyReport_EN.pdf page8"
+}

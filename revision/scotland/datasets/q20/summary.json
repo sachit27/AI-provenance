@@ -1,0 +1,37 @@
+{
+  "sentences": [
+    "In general, many respondents felt the proposals would have a positive impact on all groups, bringing equity, inclusivity, consistent standards, and confidence in services.",
+    "It was felt that improved training could better address the needs of certain groups, such as disabled or transgender people, and the provision of clearer information about procedures would benefit everyone.",
+    "There were more comments around young people than any other group.",
+    "Some respondents felt that the proposals would ensure protection for young people from potentially harmful procedures or procedures which are unsuitable for those of a young age.",
+    "Others were of the view that young people should still have access to treatments that would benefit them, for example for acne scarring, and that treatments for medical reasons should continue to be available.",
+    "The potential for a disproportionate effect of increased regulation on women was also raised by some respondents.",
+    "Respondents said this was because women are more likely to own businesses in this sector, and they are also more likely to seek these treatments and, with the introduction of new regulations, may face higher costs."
+  ],
+  "source_url": "https://www.gov.scot/publications/regulation-licensing-non-surgical-cosmetic-procedures-consultation-analysis-response/pages/4/",
+  "source_sections": {
+    "Protected characteristics": [
+      0,
+      1,
+      2
+    ]
+  },
+  "paragraphs": [
+    {
+      "section": "Protected characteristics",
+      "index": 0,
+      "text": "In general, many respondents felt the proposals would have a positive impact on all groups, bringing equity, inclusivity, consistent standards, and confidence in services. It was felt that improved training could better address the needs of certain groups, such as disabled or transgender people, and the provision of clearer information about procedures would benefit everyone."
+    },
+    {
+      "section": "Protected characteristics",
+      "index": 1,
+      "text": "There were more comments around young people than any other group. Some respondents felt that the proposals would ensure protection for young people from potentially harmful procedures or procedures which are unsuitable for those of a young age. Others were of the view that young people should still have access to treatments that would benefit them, for example for acne scarring, and that treatments for medical reasons should continue to be available."
+    },
+    {
+      "section": "Protected characteristics",
+      "index": 2,
+      "text": "The potential for a disproportionate effect of increased regulation on women was also raised by some respondents. Respondents said this was because women are more likely to own businesses in this sector, and they are also more likely to seek these treatments and, with the introduction of new regulations, may face higher costs."
+    }
+  ],
+  "paragraph_source_hash": "1f7bded0443e37ace0265abdb13a6376132da040a061d50e5fb1baa13d47dc7a"
+}

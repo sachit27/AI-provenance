@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q21",
+  "label": "Financial situation and business impacts",
+  "n": 770,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "7c268660c1b6a5c0941ea3c69ee65b0d361d5f5e7ff6323f743fa9d5df2f0c38",
+  "summary_digest": "d6f8a1c92fde7f11930bc2d9878a64ee96404c5d0495bc0d949ba0c7f5803003",
+  "summary_words": 608,
+  "summary_sentences": 25
+}

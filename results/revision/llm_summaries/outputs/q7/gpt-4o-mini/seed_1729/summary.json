@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1729,
+  "sentences": [
+    "The responses to the consultation on licensing arrangements for Group 1 procedures reveal a strong emphasis on the need for regulation to protect public health and ensure practitioner accountability in the aesthetics industry.",
+    "Many respondents call for individual licensing for all practitioners, highlighting concerns about inadequate training among non-medical professionals who perform potentially risky procedures.",
+    "This sentiment suggests that current training standards are insufficient, leading to calls for mandatory training and background checks.",
+    "However, there is also significant opposition to the idea of individual licensing, with some arguing that existing qualifications adequately ensure safety and that additional fees could burden small businesses.",
+    "Some respondents question whether licensing is necessary for practitioners already operating in regulated environments, suggesting that current oversight might be adequate.",
+    "A desire for uniform standards across all practitioners, regardless of their medical background, is evident, as is the demand for a streamlined regulatory framework that balances safety with operational realities.",
+    "Overall, while there is a consensus on the importance of licensing, opinions diverge on how it should be implemented and enforced, reflecting the complexities of the industry.",
+    "The feedback underscores a collective concern for patient safety while addressing the practical implications for practitioners."
+  ],
+  "text": "The responses to the consultation on licensing arrangements for Group 1 procedures reveal a strong emphasis on the need for regulation to protect public health and ensure practitioner accountability in the aesthetics industry. Many respondents call for individual licensing for all practitioners, highlighting concerns about inadequate training among non-medical professionals who perform potentially risky procedures. This sentiment suggests that current training standards are insufficient, leading to calls for mandatory training and background checks. However, there is also significant opposition to the idea of individual licensing, with some arguing that existing qualifications adequately ensure safety and that additional fees could burden small businesses. Some respondents question whether licensing is necessary for practitioners already operating in regulated environments, suggesting that current oversight might be adequate. A desire for uniform standards across all practitioners, regardless of their medical background, is evident, as is the demand for a streamlined regulatory framework that balances safety with operational realities. Overall, while there is a consensus on the importance of licensing, opinions diverge on how it should be implemented and enforced, reflecting the complexities of the industry. The feedback underscores a collective concern for patient safety while addressing the practical implications for practitioners.",
+  "n_sentences": 8,
+  "n_words": 196,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "8a6381a8651a4d5d7b442149babbb0e518168719d81169e56d0f3ced8683a36b",
+  "created_utc": "2026-10-24T13:06:05+00:00"
+}

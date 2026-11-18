@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1730,
+  "sentences": [
+    "The consultation responses regarding licensing arrangements for Group 1 procedures illustrate a widespread recognition of the need for improved regulation in the aesthetics industry, particularly concerning patient safety and accountability.",
+    "Many respondents insist that all practitioners, irrespective of their work environment, should obtain individual licenses to ensure a uniform standard of care.",
+    "Concerns about unqualified individuals performing potentially dangerous procedures are highlighted, with calls for standardized training and competency benchmarks to protect the public.",
+    "Several respondents express that existing regulations are insufficient for non-healthcare professionals, emphasizing the risks associated with inadequate training.",
+    "While some argue that additional licensing in already regulated settings could create unnecessary burdens, there is a prevailing sentiment for a comprehensive approach that includes both practitioners and premises.",
+    "The need for a robust oversight body to monitor compliance and address malpractice is also emphasized.",
+    "However, some respondents worry that overly stringent regulations may drive practitioners underground or create barriers, particularly for small businesses.",
+    "Ultimately, the feedback reflects a strong desire for a balanced regulatory framework that enhances safety while maintaining accessibility for experienced professionals in the aesthetics field."
+  ],
+  "text": "The consultation responses regarding licensing arrangements for Group 1 procedures illustrate a widespread recognition of the need for improved regulation in the aesthetics industry, particularly concerning patient safety and accountability. Many respondents insist that all practitioners, irrespective of their work environment, should obtain individual licenses to ensure a uniform standard of care. Concerns about unqualified individuals performing potentially dangerous procedures are highlighted, with calls for standardized training and competency benchmarks to protect the public. Several respondents express that existing regulations are insufficient for non-healthcare professionals, emphasizing the risks associated with inadequate training. While some argue that additional licensing in already regulated settings could create unnecessary burdens, there is a prevailing sentiment for a comprehensive approach that includes both practitioners and premises. The need for a robust oversight body to monitor compliance and address malpractice is also emphasized. However, some respondents worry that overly stringent regulations may drive practitioners underground or create barriers, particularly for small businesses. Ultimately, the feedback reflects a strong desire for a balanced regulatory framework that enhances safety while maintaining accessibility for experienced professionals in the aesthetics field.",
+  "n_sentences": 8,
+  "n_words": 181,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "d112fcb0580cff6c5b9fabf90d36ad2b514450c9681d09e51de5db161af498fa",
+  "created_utc": "2026-10-24T13:06:05+00:00"
+}

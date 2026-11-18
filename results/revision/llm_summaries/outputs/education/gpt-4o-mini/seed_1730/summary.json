@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1730,
+  "sentences": [
+    "The consultation responses reflect diverse views on the skills needed for a modern digital economy and AI literacy in Canada.",
+    "Many respondents emphasize critical thinking, media literacy, and ethical awareness as essential skills, urging their integration into educational curricula from K-12 onward.",
+    "Concerns about AI's negative impacts are prevalent, with calls for caution in its adoption.",
+    "Equitable access to AI literacy is highlighted, especially for marginalized communities, with suggestions to utilize public libraries for outreach.",
+    "Public awareness campaigns are advocated to educate citizens on AI's limitations and biases.",
+    "Overall, a balanced approach prioritizing ethical considerations and skill development is essential."
+  ],
+  "text": "The consultation responses reflect diverse views on the skills needed for a modern digital economy and AI literacy in Canada. Many respondents emphasize critical thinking, media literacy, and ethical awareness as essential skills, urging their integration into educational curricula from K-12 onward. Concerns about AI's negative impacts are prevalent, with calls for caution in its adoption. Equitable access to AI literacy is highlighted, especially for marginalized communities, with suggestions to utilize public libraries for outreach. Public awareness campaigns are advocated to educate citizens on AI's limitations and biases. Overall, a balanced approach prioritizing ethical considerations and skill development is essential.",
+  "n_sentences": 6,
+  "n_words": 100,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 2,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "a321dc55e3313e94791db674692ecffa06b34ebb6388eecdd6b6c17953a6191d",
+  "created_utc": "2026-10-24T13:05:59+00:00"
+}

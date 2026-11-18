@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1731,
+  "sentences": [
+    "Consultation responses overwhelmingly support mandatory licensing for Group 1 procedures to ensure public safety and practitioner accountability, though opinions are divided on whether individual licences or premises licences are required.",
+    "A significant majority advocate for licensing individual practitioners to verify qualifications and insurance, arguing that premises licensing alone is insufficient.",
+    "Many respondents expressed frustration with current training standards, calling for rigorous, accredited training often referencing Level 4, 5, or HND standards, and highlighting the risks of short courses.",
+    "There is strong consensus on the need for rigorous qualification standards and the exclusion of \"one-day\" courses, regardless of professional background.",
+    "Conversely, a substantial minority oppose individual licensing for this group, arguing that it creates an unnecessary administrative burden and redundancy within established Health Improvement Scotland regulated settings.",
+    "The debate also centers on the most effective regulatory model, with some suggesting licensing by local authorities for consistency while others prefer Health Improvement Scotland due to clinical expertise.",
+    "Some respondents advocate for a \"tiered\" approach, suggesting that higher-risk treatments like injectables should be reclassified as Group 2 or 3.",
+    "Finally, there is concern among industry bodies regarding the cost and practicality of a dual licensing system, warning that excessive bureaucracy could stifle small businesses and drive up treatment costs."
+  ],
+  "text": "Consultation responses overwhelmingly support mandatory licensing for Group 1 procedures to ensure public safety and practitioner accountability, though opinions are divided on whether individual licences or premises licences are required. A significant majority advocate for licensing individual practitioners to verify qualifications and insurance, arguing that premises licensing alone is insufficient. Many respondents expressed frustration with current training standards, calling for rigorous, accredited training often referencing Level 4, 5, or HND standards, and highlighting the risks of short courses. There is strong consensus on the need for rigorous qualification standards and the exclusion of \"one-day\" courses, regardless of professional background. Conversely, a substantial minority oppose individual licensing for this group, arguing that it creates an unnecessary administrative burden and redundancy within established Health Improvement Scotland regulated settings. The debate also centers on the most effective regulatory model, with some suggesting licensing by local authorities for consistency while others prefer Health Improvement Scotland due to clinical expertise. Some respondents advocate for a \"tiered\" approach, suggesting that higher-risk treatments like injectables should be reclassified as Group 2 or 3. Finally, there is concern among industry bodies regarding the cost and practicality of a dual licensing system, warning that excessive bureaucracy could stifle small businesses and drive up treatment costs.",
+  "n_sentences": 8,
+  "n_words": 206,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "2819bc08af6515cff7b8421ec3c3514ad853c754d266b40cf32858fbc8f93659",
+  "created_utc": "2026-10-24T13:07:41+00:00"
+}

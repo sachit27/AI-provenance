@@ -16,4 +16,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify public repository
-        run: python scripts/check_repository.py
+        run: |
+          python scripts/check_repository.py
+          python scripts/check_revision.py

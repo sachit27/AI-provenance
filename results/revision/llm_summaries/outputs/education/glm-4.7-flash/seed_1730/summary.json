@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1730,
+  "sentences": [
+    "Respondents prioritize critical thinking and data literacy over coding, viewing AI as a tool needing human oversight.",
+    "There is consensus on public awareness and mandatory education regarding AI's limitations, hallucinations, and biases.",
+    "Many advocate integrating AI literacy into K-12 and post-secondary institutions.",
+    "Respondents see libraries and community centres as vital hubs for accessible training.",
+    "Recommendations focus on infrastructure, devices, and multilingual programming to ensure equitable access for underserved demographics.",
+    "A vocal minority expresses skepticism regarding AI's environmental and ethical risks."
+  ],
+  "text": "Respondents prioritize critical thinking and data literacy over coding, viewing AI as a tool needing human oversight. There is consensus on public awareness and mandatory education regarding AI's limitations, hallucinations, and biases. Many advocate integrating AI literacy into K-12 and post-secondary institutions. Respondents see libraries and community centres as vital hubs for accessible training. Recommendations focus on infrastructure, devices, and multilingual programming to ensure equitable access for underserved demographics. A vocal minority expresses skepticism regarding AI's environmental and ethical risks.",
+  "n_sentences": 6,
+  "n_words": 80,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 5,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "a321dc55e3313e94791db674692ecffa06b34ebb6388eecdd6b6c17953a6191d",
+  "created_utc": "2026-10-24T13:07:34+00:00"
+}

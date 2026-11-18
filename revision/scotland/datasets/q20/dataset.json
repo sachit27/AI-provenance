@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q20",
+  "label": "Protected characteristics",
+  "n": 602,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "249d0a99f3826d112c339068e69772d8d32da68e6555c5808aaf659324e01bd9",
+  "summary_digest": "b81e77f58b13dffc3ef2a301004746ba84d9ee87ab26642931e7a74e38c11b3f",
+  "summary_words": 180,
+  "summary_sentences": 7
+}

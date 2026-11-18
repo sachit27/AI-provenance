@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1729,
+  "sentences": [
+    "The majority of respondents support licensing for Group 1 procedures to ensure public safety and accountability.",
+    "There is strong consensus that practitioners require individual licensing, regardless of whether they work in a healthcare setting or a licensed premises, to verify qualifications and competence.",
+    "However, the consultation revealed significant tension regarding two-tier regulation.",
+    "Many respondents oppose the proposal to exempt practitioners working in Health Improvement Scotland regulated settings from a separate licence, arguing it creates an unfair double standard and a 'loophole' where unlicensed operators may still practice under medical supervision.",
+    "Conversely, others argue that licensing both premises and practitioners creates unnecessary duplication and financial burden for small businesses.",
+    "Key themes include demands for strict competency standards, calls for mandatory safeguarding checks, and specific requests to move certain high-risk treatments to Group 3 due to their complexity and potential for severe harm.",
+    "A small minority opposes licensing, arguing that beauty therapists are already sufficiently qualified and that costs will force the industry underground.",
+    "Additionally, some respondents expressed concerns that strict regulation could inadvertently drive unsafe practices underground."
+  ],
+  "text": "The majority of respondents support licensing for Group 1 procedures to ensure public safety and accountability. There is strong consensus that practitioners require individual licensing, regardless of whether they work in a healthcare setting or a licensed premises, to verify qualifications and competence. However, the consultation revealed significant tension regarding two-tier regulation. Many respondents oppose the proposal to exempt practitioners working in Health Improvement Scotland regulated settings from a separate licence, arguing it creates an unfair double standard and a 'loophole' where unlicensed operators may still practice under medical supervision. Conversely, others argue that licensing both premises and practitioners creates unnecessary duplication and financial burden for small businesses. Key themes include demands for strict competency standards, calls for mandatory safeguarding checks, and specific requests to move certain high-risk treatments to Group 3 due to their complexity and potential for severe harm. A small minority opposes licensing, arguing that beauty therapists are already sufficiently qualified and that costs will force the industry underground. Additionally, some respondents expressed concerns that strict regulation could inadvertently drive unsafe practices underground.",
+  "n_sentences": 8,
+  "n_words": 176,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 2,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "8a6381a8651a4d5d7b442149babbb0e518168719d81169e56d0f3ced8683a36b",
+  "created_utc": "2026-10-24T13:07:41+00:00"
+}

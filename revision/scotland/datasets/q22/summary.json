@@ -1,0 +1,29 @@
+{
+  "sentences": [
+    "Views were sought on how the introduction of licensing and regulation of the nonsurgical cosmetics sector might affect access to safe, high-quality services in island communities.",
+    "Respondents were not required to state their geographical location.",
+    "A quarter of those who responded to this question welcomed the improvements to services that regulation would bring, while slightly fewer felt it would bring fairer access to services and safety in island communities.",
+    "Some respondents did think that that licence fees might prove prohibitive for smaller businesses, as would a lack of healthcare practitioners for supervision and prescribing.",
+    "A range of suggestions were put forward to mitigate these risks, for instance, allowing visiting practitioners to offer services in healthcare premises, reducing licence fees in island settings, subsidised accommodation for visiting practitioners and flexible compliance measures such as allowing remote consultations and mobile services."
+  ],
+  "source_url": "https://www.gov.scot/publications/regulation-licensing-non-surgical-cosmetic-procedures-consultation-analysis-response/pages/4/",
+  "source_sections": {
+    "Island communities": [
+      0,
+      1
+    ]
+  },
+  "paragraphs": [
+    {
+      "section": "Island communities",
+      "index": 0,
+      "text": "Views were sought on how the introduction of licensing and regulation of the nonsurgical cosmetics sector might affect access to safe, high-quality services in island communities. Respondents were not required to state their geographical location. A quarter of those who responded to this question welcomed the improvements to services that regulation would bring, while slightly fewer felt it would bring fairer access to services and safety in island communities."
+    },
+    {
+      "section": "Island communities",
+      "index": 1,
+      "text": "Some respondents did think that that licence fees might prove prohibitive for smaller businesses, as would a lack of healthcare practitioners for supervision and prescribing. A range of suggestions were put forward to mitigate these risks, for instance, allowing visiting practitioners to offer services in healthcare premises, reducing licence fees in island settings, subsidised accommodation for visiting practitioners and flexible compliance measures such as allowing remote consultations and mobile services."
+    }
+  ],
+  "paragraph_source_hash": "1f7bded0443e37ace0265abdb13a6376132da040a061d50e5fb1baa13d47dc7a"
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1731,
+  "sentences": [
+    "Respondents are polarized between skeptics rejecting AI due to ethical risks and pro-regulation advocates demanding strict accountability.",
+    "Many view current technology as inherently untrustworthy, calling for bans rather than trust-building measures.",
+    "Others prioritize enforceable frameworks ensuring transparency, liability, and copyright protection.",
+    "Consensus exists on needing independent oversight bodies with significant regulatory power.",
+    "Public libraries and civil society are identified as trusted intermediaries for AI literacy.",
+    "Government must lead regulation while industry demonstrates compliance through radical transparency."
+  ],
+  "text": "Respondents are polarized between skeptics rejecting AI due to ethical risks and pro-regulation advocates demanding strict accountability. Many view current technology as inherently untrustworthy, calling for bans rather than trust-building measures. Others prioritize enforceable frameworks ensuring transparency, liability, and copyright protection. Consensus exists on needing independent oversight bodies with significant regulatory power. Public libraries and civil society are identified as trusted intermediaries for AI literacy. Government must lead regulation while industry demonstrates compliance through radical transparency.",
+  "n_sentences": 6,
+  "n_words": 76,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "79d455af16f437279ba94df750a7a5bad99992ae96275c7ec3a76e1289bc80e9",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

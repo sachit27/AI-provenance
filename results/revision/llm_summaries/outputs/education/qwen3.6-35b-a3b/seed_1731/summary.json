@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1731,
+  "sentences": [
+    "Public consultation reveals deep polarization between pro-adoption advocates and skeptics viewing AI as harmful.",
+    "Proponents prioritize hybrid technical skills and critical thinking, urging K-12 integration via micro-credentials.",
+    "Conversely, skeptics emphasize foundational human competencies like literacy, often calling for strict regulation or divestment.",
+    "Both groups stress understanding AI limitations, biases, and environmental costs to foster informed citizenship.",
+    "Equitable access requires universal broadband and public libraries as trusted delivery hubs for marginalized communities.",
+    "Critics argue true equity demands addressing broader socioeconomic inequalities before promoting digital skills, urging a balanced approach with robust ethical guardrails."
+  ],
+  "text": "Public consultation reveals deep polarization between pro-adoption advocates and skeptics viewing AI as harmful. Proponents prioritize hybrid technical skills and critical thinking, urging K-12 integration via micro-credentials. Conversely, skeptics emphasize foundational human competencies like literacy, often calling for strict regulation or divestment. Both groups stress understanding AI limitations, biases, and environmental costs to foster informed citizenship. Equitable access requires universal broadband and public libraries as trusted delivery hubs for marginalized communities. Critics argue true equity demands addressing broader socioeconomic inequalities before promoting digital skills, urging a balanced approach with robust ethical guardrails.",
+  "n_sentences": 6,
+  "n_words": 92,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 4,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "e3b87545bac63823d84b0e8f53d0704492350a052a13db5a6bcbee7b33c463d3",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

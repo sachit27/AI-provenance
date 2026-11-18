@@ -1,0 +1,13 @@
+topic,model,runs,budget,sentences,words,compliant,mean_attempts
+education,gpt-4o-mini,3,6 sent / ≤104 words,6.0,101 (range 100–102),3/3,2.3
+education,qwen3.6-35b-a3b,3,6 sent / ≤104 words,6.0,88 (range 81–92),3/3,2.0
+education,glm-4.7-flash,3,6 sent / ≤104 words,6.0,92 (range 80–102),3/3,4.3
+trust,gpt-4o-mini,3,6 sent / ≤89 words,6.0,88 (range 86–89),3/3,4.3
+trust,qwen3.6-35b-a3b,3,6 sent / ≤89 words,6.0,76 (range 71–80),3/3,1.3
+trust,glm-4.7-flash,3,6 sent / ≤89 words,6.0,81 (range 78–86),3/3,6.0
+q7,gpt-4o-mini,3,8 sent / ≤216 words,8.0,189 (range 181–196),3/3,1.0
+q7,qwen3.6-35b-a3b,3,8 sent / ≤216 words,8.0,154 (range 126–181),3/3,1.7
+q7,glm-4.7-flash,3,8 sent / ≤216 words,8.0,181 (range 162–206),3/3,1.3
+q21,gpt-4o-mini,3,25 sent / ≤608 words,23.7,506 (range 440–548),1/3,5.7
+q21,qwen3.6-35b-a3b,3,25 sent / ≤608 words,28.3,561 (range 364–802),0/3,7.0
+q21,glm-4.7-flash,3,25 sent / ≤608 words,24.0,550 (range 537–564),1/3,5.7

@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1731,
+  "sentences": [
+    "Respondents emphasize a blend of technical skills and essential human capabilities alongside AI awareness.",
+    "A consensus calls for integrating this education into K-12 curricula and public awareness campaigns to address biases and limitations.",
+    "While many advocate for this approach, a vocal minority expresses skepticism, viewing AI as a threat to critical thinking and environmental safety.",
+    "To ensure equitable access, stakeholders propose leveraging public libraries and community hubs as training sites.",
+    "Specific measures include subsidized broadband, multilingual resources, and culturally relevant programming for marginalized and Indigenous communities.",
+    "Additionally, respondents frequently call for infrastructure investment to resolve digital divides and support lifelong learning initiatives."
+  ],
+  "text": "Respondents emphasize a blend of technical skills and essential human capabilities alongside AI awareness. A consensus calls for integrating this education into K-12 curricula and public awareness campaigns to address biases and limitations. While many advocate for this approach, a vocal minority expresses skepticism, viewing AI as a threat to critical thinking and environmental safety. To ensure equitable access, stakeholders propose leveraging public libraries and community hubs as training sites. Specific measures include subsidized broadband, multilingual resources, and culturally relevant programming for marginalized and Indigenous communities. Additionally, respondents frequently call for infrastructure investment to resolve digital divides and support lifelong learning initiatives.",
+  "n_sentences": 6,
+  "n_words": 102,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 7,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "e3b87545bac63823d84b0e8f53d0704492350a052a13db5a6bcbee7b33c463d3",
+  "created_utc": "2026-10-24T13:07:37+00:00"
+}

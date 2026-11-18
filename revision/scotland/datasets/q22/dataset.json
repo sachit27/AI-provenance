@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q22",
+  "label": "Island communities",
+  "n": 581,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "dec5f306565a0e537846fd728c6ed23fede509cc9dd59eb8f92e43eadb4ed6f8",
+  "summary_digest": "1b79690f50b4fb91a63651dd3ae0a25e0aa7c1d1e5f22cdd7cc6b34d036c7ed8",
+  "summary_words": 139,
+  "summary_sentences": 5
+}

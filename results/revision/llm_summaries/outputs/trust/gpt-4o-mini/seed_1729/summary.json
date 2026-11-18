@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1729,
+  "sentences": [
+    "The public consultation responses on building trust in AI technologies in Canada reveal skepticism about their ethical implications.",
+    "Many emphasize the need for stringent regulations and transparency to protect citizens' rights and data.",
+    "Public education initiatives are deemed crucial for fostering understanding and engagement with AI.",
+    "There is a strong call for inclusive dialogue that involves diverse stakeholders in shaping AI policies.",
+    "While some see potential benefits, many advocate for caution and robust oversight.",
+    "A balanced approach prioritizing ethical considerations and public safety is essential for trust in AI."
+  ],
+  "text": "The public consultation responses on building trust in AI technologies in Canada reveal skepticism about their ethical implications. Many emphasize the need for stringent regulations and transparency to protect citizens' rights and data. Public education initiatives are deemed crucial for fostering understanding and engagement with AI. There is a strong call for inclusive dialogue that involves diverse stakeholders in shaping AI policies. While some see potential benefits, many advocate for caution and robust oversight. A balanced approach prioritizing ethical considerations and public safety is essential for trust in AI.",
+  "n_sentences": 6,
+  "n_words": 89,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 6,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "5d32cd2635072efdcefec6f53c9b15779f6b264f6382d932978076cbcd227893",
+  "created_utc": "2026-10-24T13:06:03+00:00"
+}

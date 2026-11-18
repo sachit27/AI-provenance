@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1731,
+  "sentences": [
+    "The responses to the consultation on licensing arrangements for Group 1 procedures largely emphasize the critical importance of individual licensing for practitioners to ensure public safety and maintain high standards in the aesthetics industry.",
+    "Many respondents express concern about the dangers posed by unqualified individuals, advocating for mandatory licenses regardless of the practice setting.",
+    "There is a strong desire for uniform licensing criteria and competency standards to enhance accountability and safety across the board.",
+    "However, some respondents caution against overly stringent regulations, arguing that they could deter skilled professionals from entering the field and potentially push practices underground.",
+    "While there is support for rigorous training requirements, a few suggest that licensing may not be necessary for low-risk treatments if practitioners are already working within regulated environments.",
+    "Concerns about the financial implications of licensing fees are prevalent, as they could limit public access to safe procedures.",
+    "Overall, the feedback reflects a consensus on the need for a balanced regulatory framework that prioritizes consumer safety while ensuring accessibility and innovation in aesthetic practices.",
+    "The call for clear and consistent standards resonates throughout the responses, highlighting the need for effective regulation in this sector."
+  ],
+  "text": "The responses to the consultation on licensing arrangements for Group 1 procedures largely emphasize the critical importance of individual licensing for practitioners to ensure public safety and maintain high standards in the aesthetics industry. Many respondents express concern about the dangers posed by unqualified individuals, advocating for mandatory licenses regardless of the practice setting. There is a strong desire for uniform licensing criteria and competency standards to enhance accountability and safety across the board. However, some respondents caution against overly stringent regulations, arguing that they could deter skilled professionals from entering the field and potentially push practices underground. While there is support for rigorous training requirements, a few suggest that licensing may not be necessary for low-risk treatments if practitioners are already working within regulated environments. Concerns about the financial implications of licensing fees are prevalent, as they could limit public access to safe procedures. Overall, the feedback reflects a consensus on the need for a balanced regulatory framework that prioritizes consumer safety while ensuring accessibility and innovation in aesthetic practices. The call for clear and consistent standards resonates throughout the responses, highlighting the need for effective regulation in this sector.",
+  "n_sentences": 8,
+  "n_words": 191,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "2819bc08af6515cff7b8421ec3c3514ad853c754d266b40cf32858fbc8f93659",
+  "created_utc": "2026-10-24T13:06:05+00:00"
+}

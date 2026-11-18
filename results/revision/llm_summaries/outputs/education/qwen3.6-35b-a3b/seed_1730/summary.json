@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1730,
+  "sentences": [
+    "Respondents prioritize critical thinking and ethics over technical skills to navigate AI limitations.",
+    "Many advocate embedding these concepts into K-12 curricula alongside awareness of bias and hallucinations.",
+    "Public libraries are widely endorsed as trusted hubs for equitable access across diverse demographics.",
+    "Respondents stress that universal broadband and device subsidies are prerequisites for meaningful inclusion.",
+    "A significant minority rejects AI integration entirely, citing environmental harm and ethical risks.",
+    "These skeptics urge diverting funds from technological upskilling to address basic socioeconomic needs instead."
+  ],
+  "text": "Respondents prioritize critical thinking and ethics over technical skills to navigate AI limitations. Many advocate embedding these concepts into K-12 curricula alongside awareness of bias and hallucinations. Public libraries are widely endorsed as trusted hubs for equitable access across diverse demographics. Respondents stress that universal broadband and device subsidies are prerequisites for meaningful inclusion. A significant minority rejects AI integration entirely, citing environmental harm and ethical risks. These skeptics urge diverting funds from technological upskilling to address basic socioeconomic needs instead.",
+  "n_sentences": 6,
+  "n_words": 81,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "a321dc55e3313e94791db674692ecffa06b34ebb6388eecdd6b6c17953a6191d",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "dataset": "scotland/q20",
+  "backend": "openai",
+  "respondents_with_eligible_passages": 599,
+  "passages": 1404,
+  "section_sentence_count": 7,
+  "wider_findings_available": true,
+  "response_equal_weight_mean": 0.38260217720343664,
+  "controls": {
+    "condition_marker_suffix_deletion": {
+      "score_drop": {
+        "n": 1,
+        "mean": 0.5355013608932495,
+        "median": 0.5355013608932495,
+        "q10": 0.5355013608932495,
+        "q90": 0.5355013608932495
+      },
+      "control_drop": {
+        "n": 1,
+        "mean": 0.48724353313446045,
+        "median": 0.48724353313446045,
+        "q10": 0.48724353313446045,
+        "q90": 0.48724353313446045
+      },
+      "drop_minus_control_drop": {
+        "n": 1,
+        "mean": 0.04825782775878906,
+        "median": 0.04825782775878906,
+        "q10": 0.04825782775878906,
+        "q90": 0.04825782775878906
+      }
+    },
+    "exact_passage_deletion": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.6967547215521336,
+        "median": 0.7294403314590454,
+        "q10": 0.526578152179718,
+        "q90": 0.8396866321563722
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.0,
+        "median": 0.0,
+        "q10": 0.0,
+        "q90": 0.0
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": 0.6967547215521336,
+        "median": 0.7294403314590454,
+        "q10": 0.526578152179718,
+        "q90": 0.8396866321563722
+      }
+    },
+    "synthetic_disagreement_deletion": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.12643792927265168,
+        "median": 0.1255612075328827,
+        "q10": 0.08536373972892762,
+        "q90": 0.17307159304618838
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.0,
+        "median": 0.0,
+        "q10": 0.0,
+        "q90": 0.0
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": 0.12643792927265168,
+        "median": 0.1255612075328827,
+        "q10": 0.08536373972892762,
+        "q90": 0.17307159304618838
+      }
+    },
+    "synthetic_stance_reversal": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.12643792927265168,
+        "median": 0.1255612075328827,
+        "q10": 0.08536379337310791,
+        "q90": 0.17307159304618838
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.41890877932310105,
+        "median": 0.438936322927475,
+        "q10": 0.31384516358375547,
+        "q90": 0.5200430423021316
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": -0.29247085005044937,
+        "median": -0.3034047782421112,
+        "q10": -0.41286222338676454,
+        "q90": -0.16818813085556028
+      }
+    }
+  },
+  "inference": "Descriptive diagnostic, not validated omission/representation labels; no significance claims."
+}

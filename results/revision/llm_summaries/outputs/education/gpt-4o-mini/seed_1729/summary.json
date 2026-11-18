@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1729,
+  "sentences": [
+    "The public consultation responses reveal diverse views on the skills needed for a modern digital economy and enhancing AI literacy in Canada.",
+    "Many emphasize critical thinking, digital literacy, and ethical awareness, advocating for their integration into educational curricula from K-12 onward.",
+    "Public libraries are highlighted as essential resources for providing accessible AI education, particularly for underserved communities.",
+    "Concerns about AI's limitations and biases prompt calls for public awareness campaigns to inform citizens.",
+    "Equitable access to AI literacy across demographics is crucial, with suggestions for targeted outreach programs.",
+    "Overall, the responses advocate for a balanced approach that combines technical skills with ethical considerations."
+  ],
+  "text": "The public consultation responses reveal diverse views on the skills needed for a modern digital economy and enhancing AI literacy in Canada. Many emphasize critical thinking, digital literacy, and ethical awareness, advocating for their integration into educational curricula from K-12 onward. Public libraries are highlighted as essential resources for providing accessible AI education, particularly for underserved communities. Concerns about AI's limitations and biases prompt calls for public awareness campaigns to inform citizens. Equitable access to AI literacy across demographics is crucial, with suggestions for targeted outreach programs. Overall, the responses advocate for a balanced approach that combines technical skills with ethical considerations.",
+  "n_sentences": 6,
+  "n_words": 102,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 2,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "183591207e35ce65c84772287e79edbe88ae7af9c7fcb36461f1c9c414736296",
+  "created_utc": "2026-10-24T13:05:59+00:00"
+}

@@ -1,0 +1,62 @@
+{
+  "_status": "FROZEN before any coverage file was read or analysed. Decisions are based only on question wording (revision/scotland/datasets/<q>/questions.json and the closed-question text in parse_qa.json).",
+  "stance_collapse": {
+    "support_oppose_scale": {"support": ["Strongly support", "Somewhat support"], "neutral": ["Neutral"], "oppose": ["Somewhat oppose", "Strongly oppose"]},
+    "agree_scale": {"support": ["Agree", "Strongly Agree"], "neutral": ["Neither Agree nor Disagree", "I don't know", "Don't know"], "oppose": ["Disagree", "Strongly Disagree"]},
+    "missing": "No tick / question not shown => respondent excluded from that stance analysis (never imputed)."
+  },
+  "minority_definition": "Within each analysis, among respondents who have a coverage score for the topic AND a support/oppose label, the smaller of {support, oppose} is the 'minority stance group' and the larger is the 'majority stance group'. Neutral respondents are reported descriptively and excluded from the minority-vs-majority test. Evaluated on the public data only.",
+  "primary_selection_rule": "For each free-text question, the primary stance variable is the FIRST closed question that (a) the free-text wording links to and (b) has a support/oppose or agree/disagree scale. All other linked closed questions are secondary analyses.",
+  "topics": {
+    "q4": {
+      "free_text": "4. Please provide any comments you have in relation to the grouping of procedures and the level of regulation required",
+      "linked_closed": "Q1, Q2, Q3 (procedure -> regulation group); wording 'grouping of procedures and the level of regulation required'",
+      "analyses": [
+        {"id": "q4_level_vs_proposal", "kind": "primary", "column": "g_q4_level",
+         "definition": "Q1-Q3 each list procedures that the consultation PROPOSED for Group 1/2/3 respectively. For each procedure answered (excluding Don't know) compare the respondent's chosen group (0 = no regulation, 1, 2, 3) with the proposed group. support = >=50% of answered procedures chosen exactly as proposed; oppose = <50% as proposed (deviates stricter or looser); neutral = only Don't know answers. Direction of deviation is reported descriptively in g_q4_direction only."}
+      ]
+    },
+    "q7": {
+      "free_text": "7. Please provide any comments about the answers you have given to questions 5 and 6",
+      "linked_closed": "Q5 and Q6 (explicit in wording)",
+      "analyses": [
+        {"id": "q7_Q5", "kind": "primary", "column": "g_q7_Q5", "definition": "Q5 collapsed with support_oppose_scale (first question referenced)."},
+        {"id": "q7_Q6", "kind": "secondary", "column": "g_q7_Q6", "definition": "Q6 collapsed with support_oppose_scale; labels are the respondent's stance on the literal Q6 proposal ('HIS-regulated practitioners should NOT require a licence'), so polarity is opposite to Q5."}
+      ]
+    },
+    "q20": {
+      "free_text": "20. ... affect anyone based on their protected characteristics",
+      "linked_closed": "none (impact question; wording links to no stance-bearing closed question)",
+      "analyses": []
+    },
+    "q21": {
+      "free_text": "21. ... affect people differently based on their financial situation",
+      "linked_closed": "none",
+      "analyses": []
+    },
+    "q22": {
+      "free_text": "22. ... access to safe, high-quality services in island communities",
+      "linked_closed": "none",
+      "analyses": []
+    },
+    "q23": {
+      "free_text": "23. ... and the potential of age restrictions ... rights of children and young people (UNCRC)",
+      "linked_closed": "Q19 and Q17 (the two closed age-restriction questions; Q18 is not present in the public pages); wording 'potential of age restrictions'",
+      "analyses": [
+        {"id": "q23_Q19", "kind": "primary", "column": "g_q23_Q19", "definition": "Q19 'procedures on intimate areas only for clients 18+': Agree=support, Disagree=oppose, I don't know=neutral. Primary because Q17 has no support/oppose scale."},
+        {"id": "q23_Q17", "kind": "secondary", "column": "g_q23_Q17", "definition": "Q17: 'there should be a lower age limit' = support; 'no lower age limit but under-18s treated as Group 3' = oppose; 'I don't know' = neutral."}
+      ]
+    }
+  },
+  "respondent_type": {
+    "source": "Q25 'Are you responding as an individual or an organisation?' (the only 'About you' categorical field in the public pages; no practitioner/business/member-of-public category exists)",
+    "column": "resp_type",
+    "applies_to": ["q4", "q7", "q20", "q21", "q22", "q23"],
+    "family": "secondary_respondent_type"
+  },
+  "families": {
+    "primary_stance": "official summaries; one test per topic x embedding_model on the primary stance analysis (minority vs majority)",
+    "secondary_stance": "secondary stance analyses (q7_Q6, q23_Q17)",
+    "secondary_respondent_type": "organisation vs individual, per topic x embedding_model"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q23",
+  "label": "Children rights",
+  "n": 604,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "80b4170b5662fb344f822b2fb748f78eabbc624fc2352aea755b6b92ed59e4e2",
+  "summary_digest": "2ce8669e521f4606d87d6d14890891f555e07e6943248d6b1fd881d0a3febf87",
+  "summary_words": 254,
+  "summary_sentences": 8
+}

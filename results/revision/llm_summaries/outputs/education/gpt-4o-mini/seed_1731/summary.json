@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1731,
+  "sentences": [
+    "The public consultation responses reveal diverse views on the skills needed for a modern digital economy and enhancing AI literacy in Canada.",
+    "Respondents emphasize both technical skills, such as coding and data literacy, and soft skills like critical thinking and ethical reasoning.",
+    "Many advocate for integrating AI literacy into K-12 curricula while addressing its limitations and biases.",
+    "Ensuring equitable access to AI education is a common concern, with suggestions to leverage public libraries and community organizations.",
+    "Skepticism about AI's societal impact and potential job displacement is prevalent.",
+    "Overall, there is a call for a balanced approach prioritizing ethical considerations and inclusive education."
+  ],
+  "text": "The public consultation responses reveal diverse views on the skills needed for a modern digital economy and enhancing AI literacy in Canada. Respondents emphasize both technical skills, such as coding and data literacy, and soft skills like critical thinking and ethical reasoning. Many advocate for integrating AI literacy into K-12 curricula while addressing its limitations and biases. Ensuring equitable access to AI education is a common concern, with suggestions to leverage public libraries and community organizations. Skepticism about AI's societal impact and potential job displacement is prevalent. Overall, there is a call for a balanced approach prioritizing ethical considerations and inclusive education.",
+  "n_sentences": 6,
+  "n_words": 102,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 3,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "e3b87545bac63823d84b0e8f53d0704492350a052a13db5a6bcbee7b33c463d3",
+  "created_utc": "2026-10-24T13:05:59+00:00"
+}

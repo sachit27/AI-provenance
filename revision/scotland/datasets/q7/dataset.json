@@ -1,0 +1,16 @@
+{
+  "dataset": "Scotland NSCP 2024-25",
+  "topic": "q7",
+  "label": "Licensing",
+  "n": 677,
+  "min_words": 5,
+  "source_archive_records": 1809,
+  "all_consultation_responses": 2207,
+  "public_selection": "consented subset",
+  "preprocessing": "strip explicit editorial redaction marker; whitespace normalization; minimum word count; no automatic language/relevance exclusion",
+  "scope": "published respondent text vs hybrid official synthesis; section targets plus full-findings relocation sensitivity",
+  "record_digest": "013c13f6c2e984ed40feac1408a737199f1da3ec9cebbfca59e14360f39543cc",
+  "summary_digest": "441c57bdf12471fd5886a36088aa8cca4250ac4289a533697775f012de433669",
+  "summary_words": 216,
+  "summary_sentences": 8
+}

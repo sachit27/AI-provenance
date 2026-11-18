@@ -1,0 +1,9 @@
+{
+  "dataset": "Canada AI Strategy 2025",
+  "topic": "trust",
+  "n": 2757,
+  "record_digest": "db4822ef857b3bf1cf6cf5b7041144e5091749a2d987887b913aa93d13e63762",
+  "summary_digest": "0321ba918103c3cebc9cb647cc47645536e59b6f1a455372423053ba32f2473d",
+  "preprocessing": "submitted retained corpus, unchanged",
+  "source_clean_sha256": "bb37815a3f8adc62724dea574c711f4459ee4e5785898036657a13092e079bb8"
+}

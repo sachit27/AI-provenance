@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1731,
+  "sentences": [
+    "Respondents demand robust, enforceable regulations, clear liability, and mandatory transparency.",
+    "They prioritize education through trusted institutions like public libraries to protect intellectual property.",
+    "Most participants call for independent oversight bodies rather than industry self-regulation.",
+    "There is significant skepticism regarding environmental impacts and job displacement.",
+    "Calls for bans on high-risk uses and strict environmental standards highlight urgent safety and sustainability concerns.",
+    "To ensure governance reflects diverse values, specific recommendations emphasize engaging Indigenous communities and civil society in policy-making processes."
+  ],
+  "text": "Respondents demand robust, enforceable regulations, clear liability, and mandatory transparency. They prioritize education through trusted institutions like public libraries to protect intellectual property. Most participants call for independent oversight bodies rather than industry self-regulation. There is significant skepticism regarding environmental impacts and job displacement. Calls for bans on high-risk uses and strict environmental standards highlight urgent safety and sustainability concerns. To ensure governance reflects diverse values, specific recommendations emphasize engaging Indigenous communities and civil society in policy-making processes.",
+  "n_sentences": 6,
+  "n_words": 78,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 7,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "79d455af16f437279ba94df750a7a5bad99992ae96275c7ec3a76e1289bc80e9",
+  "created_utc": "2026-10-24T13:07:41+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "education",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1729,
+  "sentences": [
+    "Respondents emphasize a dual focus on technical proficiency alongside critical thinking, media literacy, and adaptability.",
+    "There is strong consensus that AI literacy must prioritize understanding limitations, biases, and unreliability rather than just usage.",
+    "Views on implementation are divided between integrating education into K-12 curricula and skepticism regarding AI's utility.",
+    "Regarding equitable access, the majority advocate leveraging existing public infrastructure like libraries and community centers to reach rural and underserved groups.",
+    "Respondents stress the need for infrastructure investment, subsidized devices, and culturally relevant materials.",
+    "Some also called for a guaranteed basic income to address economic displacement."
+  ],
+  "text": "Respondents emphasize a dual focus on technical proficiency alongside critical thinking, media literacy, and adaptability. There is strong consensus that AI literacy must prioritize understanding limitations, biases, and unreliability rather than just usage. Views on implementation are divided between integrating education into K-12 curricula and skepticism regarding AI's utility. Regarding equitable access, the majority advocate leveraging existing public infrastructure like libraries and community centers to reach rural and underserved groups. Respondents stress the need for infrastructure investment, subsidized devices, and culturally relevant materials. Some also called for a guaranteed basic income to address economic displacement.",
+  "n_sentences": 6,
+  "n_words": 95,
+  "budget_sentences": 6,
+  "budget_words": 104,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "183591207e35ce65c84772287e79edbe88ae7af9c7fcb36461f1c9c414736296",
+  "created_utc": "2026-10-24T13:07:27+00:00"
+}

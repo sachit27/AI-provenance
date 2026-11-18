@@ -12,6 +12,9 @@ a fresh run. These files are not inputs to the analysis pipeline.
 - `input_hashes.sha256` records the SHA-256 checksums of the two public source
   CSV files in `data/`.
 
+- `crossfit_confirmatory_summary.csv` provides the same Canadian reference estimates in tabular form.
+- `revision/` contains the additional analyses described in [the revision results guide](revision/README.md).
+
 ## Terms used in the results
 
 - **Coverage** is the cosine similarity between a respondent-topic record and

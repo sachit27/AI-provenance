@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "gpt-4o-mini",
+  "model_slug": "gpt-4o-mini",
+  "model_digest": "openai:gpt-4o-mini-2024-07-18",
+  "seed": 1730,
+  "sentences": [
+    "The public consultation responses reveal significant skepticism about AI technologies in Canada, highlighting the need for transparency and accountability.",
+    "Many respondents call for robust regulatory frameworks to address data privacy and algorithmic bias.",
+    "Education is seen as vital for improving AI literacy, with public libraries positioned as key resources.",
+    "Inclusive governance is advocated to incorporate diverse perspectives, especially from marginalized communities.",
+    "Respondents stress that ethical considerations must be addressed to build trust.",
+    "Overall, a cautious approach prioritizing transparency and ethics is essential for fostering public confidence in AI."
+  ],
+  "text": "The public consultation responses reveal significant skepticism about AI technologies in Canada, highlighting the need for transparency and accountability. Many respondents call for robust regulatory frameworks to address data privacy and algorithmic bias. Education is seen as vital for improving AI literacy, with public libraries positioned as key resources. Inclusive governance is advocated to incorporate diverse perspectives, especially from marginalized communities. Respondents stress that ethical considerations must be addressed to build trust. Overall, a cautious approach prioritizing transparency and ethics is essential for fostering public confidence in AI.",
+  "n_sentences": 6,
+  "n_words": 88,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 2,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "215517b4bbaa6769cac8ba32aa272c3de726234540eca8d4ae6ecf33d7fb6ebf",
+  "created_utc": "2026-10-24T13:06:03+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1729,
+  "sentences": [
+    "Respondents are polarized, with skeptics rejecting AI as inherently untrustworthy due to ethical harms.",
+    "Proponents demand strict regulation aligned with international standards to ensure safety.",
+    "Mandatory transparency, including labeling and liability for harms, is essential for confidence.",
+    "Public libraries and academics are identified as trusted leaders for driving literacy.",
+    "Government must set enforceable baselines while civil society provides independent oversight.",
+    "Trust depends on demonstrating tangible rights protections rather than promoting benefits."
+  ],
+  "text": "Respondents are polarized, with skeptics rejecting AI as inherently untrustworthy due to ethical harms. Proponents demand strict regulation aligned with international standards to ensure safety. Mandatory transparency, including labeling and liability for harms, is essential for confidence. Public libraries and academics are identified as trusted leaders for driving literacy. Government must set enforceable baselines while civil society provides independent oversight. Trust depends on demonstrating tangible rights protections rather than promoting benefits.",
+  "n_sentences": 6,
+  "n_words": 71,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 2,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "5d32cd2635072efdcefec6f53c9b15779f6b264f6382d932978076cbcd227893",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

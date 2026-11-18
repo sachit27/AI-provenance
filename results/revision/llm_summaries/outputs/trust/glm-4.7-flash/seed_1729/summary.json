@@ -1,0 +1,26 @@
+{
+  "topic": "trust",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1729,
+  "sentences": [
+    "Respondents emphasize transparency, accountability, and human oversight as essential for building trust.",
+    "They demand robust, enforceable regulations with clear liability, including mandatory labeling and sector-specific standards.",
+    "To foster public understanding, a significant consensus supports independent, accessible AI literacy programs.",
+    "While the federal government is the primary leader in setting standards, many advocate for independent oversight bodies.",
+    "Trust requires mitigating environmental and social harms like job displacement.",
+    "Ultimately, the public rejects industry self-regulation, insisting that legitimacy be earned through rigorous governance."
+  ],
+  "text": "Respondents emphasize transparency, accountability, and human oversight as essential for building trust. They demand robust, enforceable regulations with clear liability, including mandatory labeling and sector-specific standards. To foster public understanding, a significant consensus supports independent, accessible AI literacy programs. While the federal government is the primary leader in setting standards, many advocate for independent oversight bodies. Trust requires mitigating environmental and social harms like job displacement. Ultimately, the public rejects industry self-regulation, insisting that legitimacy be earned through rigorous governance.",
+  "n_sentences": 6,
+  "n_words": 80,
+  "budget_sentences": 6,
+  "budget_words": 89,
+  "budget_compliant": true,
+  "attempts": 6,
+  "condense_repair_used": true,
+  "protocol_version": "1.1",
+  "input_hash": "5d32cd2635072efdcefec6f53c9b15779f6b264f6382d932978076cbcd227893",
+  "created_utc": "2026-10-24T13:07:39+00:00"
+}

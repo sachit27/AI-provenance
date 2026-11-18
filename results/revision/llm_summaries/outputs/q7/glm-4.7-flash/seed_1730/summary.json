@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "glm-4.7-flash:Q4_K_M",
+  "model_slug": "glm-4.7-flash",
+  "model_digest": "4475827791a269b02c8ec49b1c3bc1abb5846bacf3fae015b75d33986322d8f6",
+  "seed": 1730,
+  "sentences": [
+    "The majority of respondents support licensing for Group 1 procedures to ensure public safety and standardisation.",
+    "There is a strong consensus that both the practitioner and the premises require regulation, though views differ on whether this should be via a Local Authority licence or Healthcare Improvement Scotland registration.",
+    "Many respondents advocate for individual practitioner licences to prove competency, training, and insurance regardless of the setting.",
+    "There is significant debate regarding regulatory bodies, with some arguing Healthcare Improvement Scotland is rigorous enough to be the sole regulator.",
+    "A significant group opposes non-medical professionals performing invasive Group 1 procedures citing safety risks and the need for medical oversight.",
+    "While many want both practitioner and premises licensed, others believe a premises licence is sufficient if it ensures hygiene and safety.",
+    "The consultation reveals a polarised view on individual practitioner licensing, with a significant majority advocating for mandatory individual licenses to enhance public protection.",
+    "There is a distinct consensus favoring exemptions for practitioners in HIS-regulated premises."
+  ],
+  "text": "The majority of respondents support licensing for Group 1 procedures to ensure public safety and standardisation. There is a strong consensus that both the practitioner and the premises require regulation, though views differ on whether this should be via a Local Authority licence or Healthcare Improvement Scotland registration. Many respondents advocate for individual practitioner licences to prove competency, training, and insurance regardless of the setting. There is significant debate regarding regulatory bodies, with some arguing Healthcare Improvement Scotland is rigorous enough to be the sole regulator. A significant group opposes non-medical professionals performing invasive Group 1 procedures citing safety risks and the need for medical oversight. While many want both practitioner and premises licensed, others believe a premises licence is sufficient if it ensures hygiene and safety. The consultation reveals a polarised view on individual practitioner licensing, with a significant majority advocating for mandatory individual licenses to enhance public protection. There is a distinct consensus favoring exemptions for practitioners in HIS-regulated premises.",
+  "n_sentences": 8,
+  "n_words": 162,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "d112fcb0580cff6c5b9fabf90d36ad2b514450c9681d09e51de5db161af498fa",
+  "created_utc": "2026-10-24T13:07:41+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "topic": "q7",
+  "model": "qwen3.6:35b-a3b",
+  "model_slug": "qwen3.6-35b-a3b",
+  "model_digest": "a7eb95c53bcf96b4bdd008d0fab4a5dac88047d9c1a7a9ab88ed453423fbd87c",
+  "seed": 1730,
+  "sentences": [
+    "Respondents expressed polarized views on licensing Group 1 procedures, with significant tension between public safety advocates and industry concerns regarding feasibility.",
+    "A strong majority supported mandatory individual practitioner licensing to ensure accountability, standardized training, and robust safeguarding measures like PVG checks.",
+    "Proponents argued that dual licensing for both practitioners and premises was essential to prevent unqualified individuals from exploiting regulatory loopholes in unregulated settings.",
+    "Many emphasized that premises licensing alone was insufficient because it failed to guarantee individual competence or track rogue practitioners moving between venues.",
+    "Conversely, opponents highlighted the administrative burden and costs associated with additional licensing, particularly for small businesses and sole traders operating within HIS-regulated environments.",
+    "Critics viewed separate local authority licensing for healthcare professionals as redundant duplication, arguing existing professional bodies already provided adequate oversight.",
+    "Industry respondents warned that strict requirements could drive skilled non-medical practitioners out of business, reducing patient access and potentially pushing treatments underground.",
+    "While broad agreement existed on the need for regulation, deep disagreement remained regarding whether this should involve universal practitioner licensing or reliance on existing frameworks to avoid a two-tier system."
+  ],
+  "text": "Respondents expressed polarized views on licensing Group 1 procedures, with significant tension between public safety advocates and industry concerns regarding feasibility. A strong majority supported mandatory individual practitioner licensing to ensure accountability, standardized training, and robust safeguarding measures like PVG checks. Proponents argued that dual licensing for both practitioners and premises was essential to prevent unqualified individuals from exploiting regulatory loopholes in unregulated settings. Many emphasized that premises licensing alone was insufficient because it failed to guarantee individual competence or track rogue practitioners moving between venues. Conversely, opponents highlighted the administrative burden and costs associated with additional licensing, particularly for small businesses and sole traders operating within HIS-regulated environments. Critics viewed separate local authority licensing for healthcare professionals as redundant duplication, arguing existing professional bodies already provided adequate oversight. Industry respondents warned that strict requirements could drive skilled non-medical practitioners out of business, reducing patient access and potentially pushing treatments underground. While broad agreement existed on the need for regulation, deep disagreement remained regarding whether this should involve universal practitioner licensing or reliance on existing frameworks to avoid a two-tier system.",
+  "n_sentences": 8,
+  "n_words": 181,
+  "budget_sentences": 8,
+  "budget_words": 216,
+  "budget_compliant": true,
+  "attempts": 1,
+  "condense_repair_used": false,
+  "protocol_version": "1.1",
+  "input_hash": "d112fcb0580cff6c5b9fabf90d36ad2b514450c9681d09e51de5db161af498fa",
+  "created_utc": "2026-10-24T13:06:53+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "dataset": "canada/trust",
+  "backend": "openai",
+  "respondents_with_eligible_passages": 2738,
+  "passages": 18452,
+  "section_sentence_count": 6,
+  "wider_findings_available": false,
+  "response_equal_weight_mean": 0.40750153528131133,
+  "controls": {
+    "condition_marker_suffix_deletion": {
+      "score_drop": {
+        "n": 11,
+        "mean": 0.21513926441019232,
+        "median": 0.20840537548065186,
+        "q10": 0.09821939468383789,
+        "q90": 0.38227564096450806
+      },
+      "control_drop": {
+        "n": 11,
+        "mean": 0.4386989013715224,
+        "median": 0.5013621151447296,
+        "q10": 0.19325590133666992,
+        "q90": 0.5982731580734253
+      },
+      "drop_minus_control_drop": {
+        "n": 11,
+        "mean": -0.22355963696133008,
+        "median": -0.163030207157135,
+        "q10": -0.5000537633895874,
+        "q90": -0.057240068912506104
+      }
+    },
+    "exact_passage_deletion": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.7342126897349953,
+        "median": 0.7543377205729485,
+        "q10": 0.5425112783908844,
+        "q90": 0.8945153862237931
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.0,
+        "median": 0.0,
+        "q10": 0.0,
+        "q90": 0.0
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": 0.7342126897349953,
+        "median": 0.7543377205729485,
+        "q10": 0.5425112783908844,
+        "q90": 0.8945153862237931
+      }
+    },
+    "synthetic_disagreement_deletion": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.12983886659145355,
+        "median": 0.13086363673210144,
+        "q10": 0.0816418170928955,
+        "q90": 0.1779112875461579
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.0,
+        "median": 0.0,
+        "q10": 0.0,
+        "q90": 0.0
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": 0.12983886659145355,
+        "median": 0.13086363673210144,
+        "q10": 0.0816418170928955,
+        "q90": 0.1779112875461579
+      }
+    },
+    "synthetic_stance_reversal": {
+      "score_drop": {
+        "n": 100,
+        "mean": 0.12983886659145355,
+        "median": 0.13086363673210144,
+        "q10": 0.08164176344871521,
+        "q90": 0.1779112875461579
+      },
+      "control_drop": {
+        "n": 100,
+        "mean": 0.4449553528428078,
+        "median": 0.4453902244567871,
+        "q10": 0.3240661323070526,
+        "q90": 0.5442323684692384
+      },
+      "drop_minus_control_drop": {
+        "n": 100,
+        "mean": -0.31511648625135424,
+        "median": -0.3245325982570648,
+        "q10": -0.4225797951221466,
+        "q90": -0.19900771379470822
+      }
+    }
+  },
+  "inference": "Descriptive diagnostic, not validated omission/representation labels; no significance claims."
+}

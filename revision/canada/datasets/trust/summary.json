@@ -1,0 +1,15 @@
+{
+  "sentences": [
+    "Public trust in AI hinges on transparency, accountability and robust governance.",
+    "Respondents called for risk-based certification standards, independent audits, and clear disclosures about AI use.",
+    "Ethical guidelines and oversight bodies are seen as essential to protect individual rights and promote fairness.",
+    "Concerns include bias, privacy breaches, job displacement and the environmental footprint of AI infrastructure.",
+    "Respondents advocated public education programs, AI literacy initiatives, and community engagement through libraries and forums.",
+    "Many expressed strong skepticism toward generative AI, demanding strict regulation, penalties for non-compliance and frameworks that uphold Canadian values."
+  ],
+  "source_url": "https://ised-isde.canada.ca/",
+  "source_sections": [
+    "submitted official summary"
+  ],
+  "provenance": "pipeline/config.py verbatim submitted transcription; AiStrategyReport_EN.pdf page8"
+}
