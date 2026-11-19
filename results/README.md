@@ -42,5 +42,5 @@ constraint; they were not assessed as publication-ready summaries for
 coherence, redundancy, policy usefulness, or human preference.
 
 The compact results correspond primarily to Figure 5 and Tables S6--S9 of the
-associated preprint. Generated participant-level outputs and embeddings are not
+associated preprint. In the journal manuscript, see Figure 3 and Tables S3–S5 and S8. Generated participant-level outputs and embeddings are not
 committed because they are recreated by the released pipeline.

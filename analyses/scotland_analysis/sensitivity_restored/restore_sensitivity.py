@@ -111,6 +111,7 @@ def main():
             blk = analysis_io.embedding_blocks(q, model, ANALYSIS)
             rec, summ, clean = blk["records"], blk["summary"], blk["clean"]
             ids_ret = clean["Internal ID"].astype(str).to_numpy()
+            rec, summ = prep.normalize(rec), prep.normalize(summ)
             cov_ret = (rec @ summ.T).max(axis=1)
             bj = json.loads((ANALYSIS / q / f"benchmark_{model}.json").read_text())
             thr = float(bj["frozen_exclusion_threshold"])

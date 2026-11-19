@@ -111,7 +111,7 @@ The generator writes `fig7_extensions.png` and `supp_tables_new.tex`. The TeX fi
 | `metric_sensitivity/FINDINGS.md` | Run the command above. It reads the saved distance outputs from step 7. To compare with the reported distances, use `--results-root results/reference/metric_sensitivity/results` with `summarize.py`. |
 | `scotland/datasets/<question>/questions.json` | Included in the release and rebuilt in step 2. |
 
-These commands generate response-level inputs locally. The generator contains checks against the reported analysis; a fresh model run can change classifications or scores and trigger those checks. The [reference archive](../results/reference/README.md) contains the reported aggregate outputs. For the published rendering of Figure 7, see [the study figure](../docs/figures/study_results.png).
+These commands generate response-level inputs locally. A fresh model run can change classifications or scores. Use the archived results to compare with the reported run. The [reference archive](../results/reference/README.md) contains the reported aggregate outputs. For the published rendering of Figure 7, see [the study figure](../docs/figures/study_results.png).
 
 ## Reproduction limits
 

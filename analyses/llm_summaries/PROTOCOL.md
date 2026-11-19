@@ -1,4 +1,4 @@
-# Controlled multi-LLM summarisation protocol (version 1.0)
+# Controlled multi-LLM summarisation protocol (version 1.1)
 
 Purpose: test whether coverage patterns of a consultation summary come from the summariser, from human editorial
 choices (official summary), or from the dataset, by producing summaries from the same inputs under one identical protocol.
@@ -41,7 +41,7 @@ embeddings are loaded through the original `analysis_io.embedding_blocks` of the
 Gini; participant-bootstrap paired CIs vs official; Spearman between summarisers; Jaccard of bottom-decile sets vs random baseline;
 per-region (`cluster_id` in `clustered.parquet`) mean-coverage ranks and Kendall's W with permutation p-values.
 
-## v1.1 amendment (24 Oct 2026, before any coverage scoring)
+## Changes from version 1.0 (24 Oct 2026, before any coverage scoring)
 Pilot outputs showed correct sentence counts but occasional word-budget overshoot (1–15 words) after the three chained retries. v1.1 adds, identically for every model and only when those retries fail, up to three fresh "condense" requests on the best attempt (target ≈ budget − 10 words, never above budget, same sentence count, no new content; seeds seed+1000·k). `condense_repair_used` is recorded per summary. All earlier calls are reused from the cache, so v1.0-compliant summaries are unchanged. The decision was made from length diagnostics only; no coverage scores existed.
 
 The condense request states the current and required sentence and word counts and may merge, split or shorten sentences, so it also repairs sentence-count violations (seen for the 25-sentence q21 budget).

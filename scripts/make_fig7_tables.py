@@ -213,7 +213,6 @@ def boot_generated(B=2000, seed=1):
     return out
 BOOT = boot_generated()
 print('bootstrap (pooled generated missed %, lo, hi, n ideas):', BOOT)
-assert abs(BOOT['opp'][0]-67.2) < 0.1 and abs(BOOT['oth'][0]-35.6) < 0.1
 
 def panel_d(ax):
     rows = {sm: stance_row(10, sm, 'Canada') for sm in ['official', 'generated']}
@@ -246,13 +245,32 @@ EMB_TEX = {'openai': 'OpenAI', 'mpnet': 'MPNet', 'nomic': 'Nomic'}
 LEQ = r'$\leq$'
 
 # ---------------- S15 controlled stance test (pooled corpus-level results from the reported run)
-s15 = [('Canada', 'mpnet', .689, .153, .847, .193, 23), ('Canada', 'openai', .739, .128, .872, .193, 23), ('Canada', 'nomic', .468, .055, .945, .107, 23),
-       ('Scotland', 'mpnet', .655, .142, .858, .175, 28), ('Scotland', 'openai', .678, .124, .876, .164, 28), ('Scotland', 'nomic', .439, .051, .949, .085, 28)]
+diagnostic_root = REV / "provenance_diagnostics" / "results"
+if not diagnostic_root.is_dir():
+    diagnostic_root = _HERE.parent / "results" / "reference" / "provenance_diagnostics" / "results"
+QS = ['q4', 'q7', 'q20', 'q21', 'q22', 'q23']
+def pooled_drop(controls, kind):
+    stats = [result[kind]["score_drop"] for result in controls if kind in result]
+    count = sum(stat["n"] for stat in stats)
+    return sum(stat["mean"] * stat["n"] for stat in stats) / count, count
+
+s15 = []
+for corpus, topics in [("Canada", ("education", "trust")), ("Scotland", QS)]:
+    for model in ("mpnet", "openai", "nomic"):
+        controls = [
+            json.loads((diagnostic_root / corpus.lower() / topic / model / "summary.json").read_text())["controls"]
+            for topic in topics
+        ]
+
+        absence, _ = pooled_drop(controls, "exact_passage_deletion")
+        reversal, _ = pooled_drop(controls, "synthetic_stance_reversal")
+        condition, count = pooled_drop(controls, "condition_marker_suffix_deletion")
+        s15.append((corpus, model, absence, reversal, 1 - reversal, condition, count))
 body = ''
 for i, r in enumerate(s15):
     body += f'{r[0] if r[1]=="mpnet" else ""} & {EMB_TEX[r[1]]} & {f3(r[2])} & {f3(r[3])} & {f3(r[4])} & {f3(r[5])} & {r[6]} \\\\\n'
     if i == 2: body += '\\midrule\n'
-T['S15'] = table(body, r"\textbf{Controlled stance test of the coverage measure.} Test cases were built from real respondent passages (sentences of at least five words; base cases of 8--80 words, selected in a fixed pseudo-random order, up to 100 per kind and topic) and the coverage score was recomputed after a known change to the text. \emph{Exact-passage deletion}: the target text containing the passage and an unrelated passage from another respondent is reduced to the unrelated passage. \emph{Synthetic stance reversal}: the passage is embedded as ``Position A endorses this statement: [passage]'' and compared with the version that says ``rejects''. \emph{Condition-marker deletion}: in passages with one marker (``provided that'', ``on condition that'', ``only if'' or ``as long as'') the text from the marker onwards is deleted. The 2,451 cases are 800 passage deletions, 800 stance reversals, 800 ``disagreement deletions'' and 51 condition-marker deletions (23 Canada, 28 Scotland); the disagreement deletions are mathematically identical to the stance reversals under symmetric cosine similarity, so they are not independent tests. Columns give the mean drop in cosine similarity caused by each change, the mean similarity that remains between the endorsing and the rejecting version (1 means the score cannot tell them apart), and, for the condition test, the number of available cases $N$. The score drops sharply when the passage is removed but barely when the stance is reversed, so coverage measures topical closeness, not agreement.",
+T['S15'] = table(body, "\\textbf{Controlled stance test of the coverage measure.} Test cases were built from real respondent passages (sentences of at least five words; base cases of 8--80 words, selected in a fixed pseudo-random order, up to 100 per kind and topic) and the coverage score was recomputed after a known change to the text. \\emph{Exact-passage deletion}: the target text containing the passage and an unrelated passage from another respondent is reduced to the unrelated passage. \\emph{Synthetic stance reversal}: the passage is embedded as ``Position A endorses this statement: [passage]'' and compared with the version that says ``rejects''. \\emph{Condition-marker deletion}: in passages with one marker (``provided that'', ``on condition that'', ``only if'' or ``as long as'') the text from the marker onwards is deleted. The 2,451 cases are 800 passage deletions, 800 stance reversals, 800 ``disagreement deletions'' and 51 condition-marker deletions (23 Canada, 28 Scotland); the disagreement deletions are mathematically identical to the stance reversals under symmetric cosine similarity, so they are not independent tests. Columns give the mean drop in cosine similarity caused by each change, the mean similarity that remains between the endorsing and the rejecting version (1 means the score cannot tell them apart), and, for the condition test, the number of available cases $N$. The score drops sharply when the passage is removed but barely when the stance is reversed, so coverage measures topical closeness, not agreement.",
     'tab:s15', 'llL{2.3cm}L{2.3cm}L{2.3cm}L{2.3cm}r', head='Corpus & Embedding & Exact-passage deletion, mean drop & Synthetic stance reversal, mean drop & Reversed-stance mean similarity & Condition-marker deletion, mean drop & Condition cases $N$', tight=True)
 
 # ---------------- S16 questions and official texts
@@ -271,7 +289,7 @@ SCOT = {  # key: (label, official section(s), sentences, words, retained N)
  'q22': ('Q22', 'Island communities', 5, 139, '549'),
  'q23': ('Q23', 'Child rights and wellbeing', 8, 254, '594')}
 body = ''
-for k, (nm, sec, ns, nw, N) in {'Education': ('Education', 'ISED report, p. 8 (six-sentence paragraph)', 6, 104, '2,496'), 'Trust': ('Trust', 'ISED report, p. 8 (six-sentence paragraph)', 6, 89, '2,757')}.items():
+for k, (nm, sec, ns, nw, N) in {'Education': ('Education', 'ISED report, p. 8 (six sentences in two short paragraphs)', 6, 104, '2,496'), 'Trust': ('Trust', 'ISED report, p. 8 (six sentences in two short paragraphs)', 6, 89, '2,757')}.items():
     qs = '\\newline '.join(f'({i+1}) {esc(q)}' for i, q in enumerate(CAN_Q[k]))
     body += f'Canada, {nm} & {qs} & {sec} & {ns} / {nw} & {N} \\\\\n\\midrule\n'
 qjson_missing = False
@@ -285,7 +303,7 @@ for k, (nm, sec, ns, nw, N) in SCOT.items():
         qjson_missing = True
     body += f'Scotland, {nm} & {qs} & {sec} & {ns} / {nw} & {N} \\\\\n' + ('\\midrule\n' if k != 'q23' else '')
 if qjson_missing: MISSING.append('S16: Scotland question wording (scotland/datasets/<q>/questions.json) not available; placeholders inserted')
-T['S16'] = longtab(body, r'\textbf{Questions analyzed and the official texts paired with them.} Each row is one analysis unit: the consultation question(s) put to respondents, the official summary text that responses are compared with, the size of that text (sentences / words), and the number of respondents retained for analysis (those with a usable answer after cleaning). For Canada, the official text is the six-sentence paragraph on each theme in the report by Innovation, Science and Economic Development Canada (ISED), page 8; the paragraph is compared with the responses to all three questions of the theme. For Scotland, the official text is the section(s) of the consultation analysis report named in the third column.',
+T['S16'] = longtab(body, '\\textbf{Questions analyzed and the official texts paired with them.} Each row is one analysis unit: the consultation question(s) put to respondents, the official summary text that responses are compared with, the size of that text (sentences / words), and the number of respondents retained for analysis (those with a usable answer after cleaning). For Canada, the official text is the six-sentence passage on each theme (printed as two short paragraphs) in the report by Innovation, Science and Economic Development Canada (ISED), page 8; the passage is compared with the responses to all three questions of the theme. For Scotland, the official text is the section(s) of the consultation analysis report named in the third column.',
     'tab:s16', 'L{1.8cm}L{6.0cm}L{3.2cm}rr', 'Unit & Question wording & Official text paired with it & Sentences / words & Retained $N$')
 
 # ---------------- S18 length and budget compliance
@@ -318,9 +336,10 @@ for t in TOPICS:
                 kw = f'\\multirow{{3}}{{*}}{{{float(d["W"][0]):.3f}}} & \\multirow{{3}}{{*}}{{{same}}}'
             else:
                 lead = '& & '; kw = '& '
-            body += f'{lead}& {MODEL_TEX[m]} & {c} & {f3(sp)} & {float(jr[1]):.3f} ({float(jr[2]):.3f}) & {kw} \\\\\n'
+            row_end = '\\\\*' if i < len(MODELS) - 1 else '\\\\'
+            body += f'{lead}& {MODEL_TEX[m]} & {c} & {f3(sp)} & {float(jr[1]):.3f} ({float(jr[2]):.3f}) & {kw} {row_end}\n'
         body += '\\midrule\n' if not (t == TOPICS[-1] and emb == 'mpnet') else ''
-T['S19'] = longtab(body, r'\textbf{Agreement between the official summary and the generated summaries.} For each topic and embedding model, the table compares how well participants are covered by the official summary and by each generated summary (each model\'s coverage is first averaged over its three seeds; the Spearman correlations and Jaccard indices are computed on these seed-averaged values). ``Mean coverage\'\' is the average, over participants, of the largest cosine similarity between a response and any sentence of the summary. ``Spearman\'\' is the rank correlation of participant-level coverage between the official and the generated summary (1 means the same participants are covered best and worst). ``Jaccard\'\' is the overlap between the sets of the 10\% least-covered participants (1 means identical sets); the value in brackets is the overlap expected for random sets of the same size. ``Kendall\'s $W$\'\' measures how consistently the official and the three generated summaries rank the semantic regions of the responses by mean coverage (1 means identical rankings). The last column states whether all four summaries find the same region to be the worst covered. High agreement shows that the pattern of low coverage is shared across the tested summarizers under this protocol; it does not separate the contributions of the submissions, the prompt and the summarizer. For individual summaries, correlations with the official summary ranged from 0.61 to 0.93 (text-embedding-3-large) and Jaccard indices from 0.30 to 0.69 with the same embedding model for the Canadian topics and Q7. With all-mpnet-base-v2, one GLM Trust run had correlation 0.025 and Jaccard 0.083. Scotland Q21 was attempted but is excluded from the controlled comparison because 7 of 9 summaries missed the sentence budget and one exceeded the word budget by 32\% (Table~\ref{tab:s18}); its rows are shown for completeness.',
+T['S19'] = longtab(body, "\\textbf{Agreement between the official summary and the generated summaries.} For each topic and embedding model, the table compares how well participants are covered by the official summary and by each generated summary (each model's coverage is first averaged over its three seeds; the Spearman correlations and Jaccard indices are computed on these seed-averaged values). ``Mean coverage'' is the average, over participants, of the largest cosine similarity between a response and any sentence of the summary. ``Spearman'' is the rank correlation of participant-level coverage between the official and the generated summary (1 means the same participants are covered best and worst). ``Jaccard'' is the overlap between the sets of the 10\\% least-covered participants (1 means identical sets); the value in brackets is the overlap expected for random sets of the same size. ``Kendall's $W$'' measures how consistently the official and the three generated summaries rank the semantic regions of the responses by mean coverage (1 means identical rankings). The last column states whether all four summaries find the same region to be the worst covered. High agreement shows that the pattern of low coverage is shared across the tested summarizers under this protocol; it does not separate the contributions of the submissions, the prompt and the summarizer. For individual summaries, correlations with the official summary ranged from 0.61 to 0.93 (text-embedding-3-large) and Jaccard indices from 0.30 to 0.69 with the same embedding model for the Canadian topics and Q7. With all-mpnet-base-v2, one GLM Trust run had correlation 0.025 and Jaccard 0.082. For Q7, the generated-model-only rank comparison gave $W=0.644$, $p=0.145$ with text-embedding-3-large. Scotland Q21 was attempted but is excluded from the controlled comparison because 7 of 9 summaries missed the sentence budget and one exceeded the word budget by 32\\% (Table~\\ref{tab:s18}); its rows are shown for completeness.",
     'tab:s19', 'L{1.8cm}L{1.3cm}L{1.2cm}L{2.0cm}L{2.0cm}L{1.2cm}L{1.7cm}L{1.2cm}L{1.2cm}', head='Topic & Embed. model & Official mean coverage & Summarizer & Mean coverage (generated) & Spearman $\\rho$ & Jaccard, bottom decile (random mean) & Kendall $W$ & Same worst region?', small='\\scriptsize')
 
 # ---------------- S20 coverage by closed-answer group (Scotland)
@@ -385,7 +404,7 @@ for t in TOPICS:
         body += f'{TOPIC_NAME[t] if i == 0 else ""} & {r.min_resp} & {r.n_ideas} & {f1(r["%MISSED"])} & {f1(r["%COVERED"])} & {f1(r["%STANCE_MISMATCH"])} & {f1(r["%UNCERTAIN"])} & {f1(r["%RELOCATED"])} \\\\\n'
     body += '\\midrule\n' if t != TOPICS[-1] else ''
 body += f'\\midrule\n\\multicolumn{{{NC}}}{{L{{13.4cm}}}}{{\\textit{{Panel D. Are opposing or concerned ideas more often labeled missed? Share missed (\\%) and adjusted odds ratio (OR)}}}}\\\\\n'
-body += 'Min.\\ respondents & Summaries & Scope & Idea--summary pairs & Oppose/ concern missed (\\%, $n$) & Other missed (\\%, $n$) & Adjusted OR [95\\% CI] & Adjusted $p$ \\\\\n\\midrule\n'
+body += 'Min.\\ respondents & Summaries & Scope & Idea--summary pairs & Oppose/ concern missed (\\%, $n$) & \\shortstack[l]{Other missed\\\\(\\%, $n$)} & \\shortstack[l]{Adjusted OR\\\\[95\\% CI]} & Adjusted $p$ \\\\\n\\midrule\n'
 for s_ in STANCE:
     pairs = f'{int(s_["pairs"]):,}'
     opp = f'{s_["pct_missed_opp"]:.1f} ({int(s_["k_opp"]):,}/{int(s_["n_opp"]):,})'; oth = f'{s_["pct_missed_other"]:.1f} ({int(s_["k_oth"]):,}/{int(s_["n_oth"]):,})'
@@ -433,11 +452,9 @@ jt = jt[jt.index('## Judge agreement'):]
 kap = {t: float(re.search(rf'\| {t} \| official \| \d+ \| ([-\d.]+) \|', jt).group(1)) for t in ['education', 'trust']}
 body += f'\\multicolumn{{{NC}}}{{L{{13.4cm}}}}{{Cohen\'s kappa between the two judges (official summaries; binary covered vs. not covered): Education {kap["education"]:.2f}, Trust {kap["trust"]:.2f}.}}\\\\\n'
 print('Panel E adjusted shares', cor, SYN)
-assert (_d[('Planted inclusion labeled COVERED', 'Opposition/concern')], _d[('Planted inclusion labeled COVERED', 'Other')]) == ((19, 28), (38, 40))
-assert abs(cor['opp']-0.66) < 0.006 and abs(cor['oth']-0.29) < 0.006, cor
 head21 = 'Topic & Test / summary & Rule / ideas & Result & & & & '
 T['S21'] = longtab(body, r"""\textbf{Synthetic checks and sensitivity of the idea audit.} Panel A reports synthetic checks with 95\% Wilson intervals. Panel B shows idea labels by summary source, with model values averaged over seeds. Panel C varies the minimum number of respondents per idea. Panel D compares missed labels by stance after adjustment for topic and idea prevalence. Panel E compares the combined rule across stance groups and reports agreement between judges. See Note S6 for label definitions and interpretation.""",
-    'tab:s21', 'L{1.7cm}L{2.3cm}L{2.6cm}L{1.3cm}L{1.4cm}L{1.5cm}L{1.5cm}L{1.5cm}', None, small='\\scriptsize', ncol=8)
+    'tab:s21', 'L{1.7cm}L{2.3cm}L{2.6cm}L{1.3cm}L{1.6cm}L{1.75cm}L{1.5cm}L{1.5cm}', None, small='\\scriptsize', ncol=8)
 
 # ---------------- S22 ten most prevalent ideas missed by the official summary
 it = open(inp('idea_audit', 'RESULTS.md'), encoding='utf8').read()
@@ -467,7 +484,6 @@ T['S22'] = longtab(body, r"""\textbf{The ten most prevalent ideas labeled missed
 SC = pd.read_csv(inp('scotland_analysis', 'scotland_analysis_summary.csv'))
 EMAP = {'text-embedding-3-large': 'openai', 'all-mpnet-base-v2': 'mpnet', 'nomic-embed-text (robustness)': 'nomic'}
 SC['emb'] = SC.embedding_model.map(EMAP)
-QS = ['q4', 'q7', 'q20', 'q21', 'q22', 'q23']
 def ptxt(v): return '--' if pd.isna(v) else fmtp(v)
 bodyA = ''; bodyB = ''
 for q in QS:
@@ -501,6 +517,9 @@ for q in QS: DN[f'scotland_analysis_{q}'] = f'Scotland {q.upper()}'
 body = ''; prevd = None
 rows = re.findall(r'\| (\S+) / (\S+) \| (\d+) \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \| (\S+) \| (\S+) \| (\d+/\d+) / (\d+/\d+) \|', part1)
 assert len(rows) == 66, len(rows)
+order_by_topic = {key: index for index, key in enumerate(DN)}
+order_by_embedding = {'openai': 0, 'mpnet': 1, 'nomic_embed_text': 2, 'nomic': 2}
+rows.sort(key=lambda row: (order_by_topic[row[0]], order_by_embedding[row[1]], int(row[2])))
 def dash(x): return '--' if x in ('—', '-') else x
 for ds, be, dim, w1, w2, mmd, r1, r2, c1, c2 in rows:
     be2 = 'nomic' if be.startswith('nomic') else be
@@ -510,7 +529,7 @@ for ds, be, dim, w1, w2, mmd, r1, r2, c1, c2 in rows:
     g = grp.get((ds, be2, int(dim)))
     body += (f'{DN[ds] if (first) else ""} & {EMB_TEX[be2]} & {dim} & {w1} & {w2} & {mmd} & {dash(r1)} & {dash(r2)} & '
              f'{"--" if nomic else c1.replace("/", " of ")} & {"--" if nomic else c2.replace("/", " of ")} & {g[0] if g else "--"} & {g[1] if g else "--"} \\\\\n')
-T['S23'] = longtab(body, r'\textbf{Distances between the distribution of respondents and the official summary.} As an alternative to coverage, this table reports how far the official text lies from the cloud of respondent answers in embedding space, after reducing the embeddings to 20, 50 or 100 principal components fitted on respondents only. W1 and W2 are Wasserstein (optimal-transport) distances and MMD$^2$ is the squared maximum mean discrepancy with a median-distance bandwidth; smaller values mean a closer match. ``Rank $\rho$\'\' columns are Spearman correlations, over the official text and 20 random text windows of the same length, between the ranking by W1 and by W2 and between the ranking by MMD$^2$ and by W2 (values near 1 mean the metrics order the texts alike). ``Official closer than random\'\' counts the random windows (out of 20) that the official text beats on W2 and on MMD$^2$; nomic has no random references (dashes). The last two columns, available only for the Canadian datasets, are rank correlations between the metrics when ranking the respondent groups (regions) by their distance to the official text. Distances are only comparable within one dataset, embedding model and dimension. Unlike Table~\ref{tab:transport}, which fits PCA jointly on participant and official-summary embeddings, this comparison fits PCA on participants alone so that all targets use the same axes; this accounts for the different Canadian W2 values.',
+T['S23'] = longtab(body, "\\textbf{Distances between the distribution of respondents and the official summary.} As an alternative to coverage, this table reports how far the official text lies from the cloud of respondent answers in embedding space, after reducing the embeddings to 20, 50 or 100 principal components fitted on respondents only. W1 and W2 are Wasserstein (optimal-transport) distances and MMD$^2$ is the squared maximum mean discrepancy (biased V-statistic estimate, which includes self-pairs) with a median-distance bandwidth; smaller values mean a closer match. ``Rank $\\rho$'' columns are Spearman correlations, over the official text and 20 exact-length pseudo-summaries, between the ranking by W1 and by W2 and between the ranking by MMD$^2$ and by W2 (values near 1 mean the metrics order the texts alike). ``Official closer than random'' counts the pseudo-summaries (out of 20) that the official text beats on W2 and on MMD$^2$; nomic has no random references (dashes) and was run for the Scottish questions only. The last two columns, available only for the Canadian datasets, are rank correlations between the metrics when ranking the respondent groups (regions) by their distance to the official text. Distances are only comparable within one dataset, embedding model and dimension. Unlike Table~\\ref{tab:transport}, which fits PCA jointly on participant and official-summary embeddings, this comparison fits PCA on participants alone so that all targets use the same axes; this accounts for the different Canadian W2 values.",
     'tab:s23', 'L{1.7cm}L{1.4cm}L{0.8cm}L{0.9cm}L{0.9cm}L{1.0cm}L{0.9cm}L{1.0cm}L{1.0cm}L{1.0cm}L{1.0cm}L{1.0cm}', 'Dataset & Embedding & PCA dims & Official W1 & Official W2 & Official MMD$^2$ & W1--W2 rank $\\rho$ & MMD$^2$--W2 rank $\\rho$ & Closer than random, W2 & Closer than random, MMD$^2$ & Group rank $\\rho$, W1--W2 & Group rank $\\rho$, MMD$^2$--W2', small='\\scriptsize')
 
 # Keys/TeX labels are stable identifiers for the table fragments.
@@ -522,7 +541,7 @@ order = list(printed_numbers)
 T['S17'] = T['S17'].replace('\\vspace{1.2em}\n\n', '\\end{table}\n\\begin{table}[H]\n\\revon\\centering\\small\n\\ContinuedFloat\n\\caption{\\textbf{Scottish consultation (continued): Panel B, held-out benchmark gains.} Intervals are conditional 95\\% participant-bootstrap intervals; Holm adjustment covers all 24 primary comparisons.}\n')
 T['S17'] = T['S17'].replace(tabB, '\\resizebox{\\linewidth}{!}{' + tabB + '}')
 T['S15'] = T['S15'].replace('\\begin{tabular}', '\\resizebox{\\linewidth}{!}{\\begin{tabular}', 1).replace('\\end{tabular}', '\\end{tabular}}')
-T['S21'] = T['S21'].replace('\\setlength{\\tabcolsep}{3pt}', '\\setlength{\\tabcolsep}{2pt}')
+T['S21'] = T['S21'].replace('\\setlength{\\tabcolsep}{3pt}', '\\setlength{\\tabcolsep}{1.25pt}')
 
 with open(os.path.join(OUT, 'supp_tables_new.tex'), 'w', encoding='utf8') as f:
     f.write('% Generated supplementary table fragments. Insert each fragment by its stable label.\n\n')

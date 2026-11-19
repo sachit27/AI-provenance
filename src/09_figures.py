@@ -57,7 +57,7 @@ def panel(ax, label: str) -> None:
 
 def supplemental_panel(ax, label: str) -> None:
     """Panel labels sized and positioned for denser supplemental composites."""
-    ax.text(-0.10, 1.06, label, transform=ax.transAxes, fontsize=17,
+    ax.text(0, 1.14, label, transform=ax.transAxes, fontsize=17,
             fontweight="bold", va="top", ha="left")
 
 
@@ -443,13 +443,23 @@ def make_sensitivity() -> None:
             axes[0, 1].plot([x["pca_dims"] for x in sens["pca_sweep"]],
                             [x["gini"] for x in sens["pca_sweep"]],
                             marker="o", linewidth=2, color=color, label=label)
-            axes[1, 0].plot([x["sd_multiplier"] for x in sens["exclusion_sweep"]],
-                            [100*x["exclusion_rate"] for x in sens["exclusion_sweep"]],
-                            marker="o", linewidth=2, color=color, label=label)
+            records = pd.read_parquet(CORRECTED / topic / "clustered.parquet",
+                                      columns=["coverage_score", "cluster_id"])
+            sweep = sens["exclusion_sweep"]
+            rates = pd.DataFrame({
+                point["sd_multiplier"]: (records["coverage_score"] < point["threshold"])
+                .groupby(records["cluster_id"]).mean()
+                for point in sweep
+            })
+            for rank, (cluster, row) in enumerate(rates.nlargest(3, 1.0).iterrows()):
+                axes[1, 0].plot(row.index, 100 * row.values,
+                                marker=["o", "s", "^"][rank], color=color,
+                                linestyle=["-", "--", ":"][rank],
+                                linewidth=2, label=f"{label} C{cluster}")
             axes[1, 1].plot([x["k"] for x in sens["k_sweep"]],
                             [x["silhouette"] for x in sens["k_sweep"]],
                             marker="o", linewidth=2, color=color, label=label)
-        titles = ["Wasserstein distance", "Coverage Gini", "Low-coverage rate", "Cluster silhouette"]
+        titles = ["Wasserstein distance", "Coverage Gini", "Low-coverage rates by cluster", "Cluster silhouette"]
         ylabels = ["$W_2$", "Gini", "Low coverage (%)", "Silhouette"]
         xlabels = ["PCA dimensions", "PCA dimensions", "Threshold multiplier (SD)", "$k$"]
         for i, ax in enumerate(axes.flat):

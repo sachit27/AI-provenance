@@ -305,7 +305,7 @@ def multi_model_robustness() -> dict:
             topic_results[model_name] = {
                 "wasserstein_2": round(w2, 6),
                 "gini": round(gini, 4),
-                "exclusion_rate": round(exclusion_rate, 4),
+                "exclusion_rate": exclusion_rate,
                 "coverage_mean": round(float(rob_coverage.mean()), 4),
                 "coverage_rank_correlation": round(float(rho), 4),
                 "coverage_rank_p": round(float(p_val), 6),
