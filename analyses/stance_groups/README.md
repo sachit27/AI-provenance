@@ -1,4 +1,4 @@
-# Stance-group coverage analysis (Scotland) - reviewer question: are minority opinions lost?
+# Coverage by respondents’ stated positions in Scotland
 
 Groups are defined by participants' OWN closed answers in the same consultation (no human labelling, no embedding clusters).
 

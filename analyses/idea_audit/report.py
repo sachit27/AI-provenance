@@ -151,7 +151,7 @@ def run(topics, thr, min_resp, top_n):
         mi = mi.drop(columns=["quotes", "member_rids", "member_claims"]).rename(columns={"canonical": "canonical_statement"})
         mi.reset_index().to_csv(out_dir / f"missed_ideas_{t}.csv", index=False)
         offm = mi[mi.official_label == "MISSED"].head(top_n)
-        parts.append(f"\n### {top_n} most prevalent ideas MISSED by the official summary (for the paper)\n\n")
+        parts.append(f"\n### {top_n} most prevalent ideas labeled missed in the official summary\n\n")
         if len(offm):
             tt = offm.reset_index()[["canonical_statement", "stance", "n_resp", "pct_resp", "frac_summaries_missing", "quote1", "quote1_rid"]].copy()
             tt["pct_resp"] = 100 * tt.pct_resp
@@ -161,7 +161,7 @@ def run(topics, thr, min_resp, top_n):
             parts.append("_none_\n")
         if len(piv.columns) > 1:
             allm = mi[mi.frac_summaries_missing == 1].head(top_n)
-            parts.append(f"\n### {top_n} most prevalent ideas missed by ALL judged summaries\n\n" + md(allm.reset_index()[["canonical_statement", "stance", "n_resp", "n_summaries_judged"]]))
+            parts.append(f"\n### {top_n} most prevalent ideas labeled missed in every summary\n\n" + md(allm.reset_index()[["canonical_statement", "stance", "n_resp", "n_summaries_judged"]]))
         # sensitivity: min respondents
         for m in (5, 10, 20):
             g = j[(j.summary == "official") & (j.n_resp >= m)]

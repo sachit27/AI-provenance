@@ -21,7 +21,7 @@ os.makedirs(OUT, exist_ok=True)
 MISSING = []
 
 def inp(*p):
-    """locate file in staged revision dir or extracted archive"""
+    """Find a saved analysis output in either input directory."""
     for root in (REV, INP):
         f = os.path.join(root, *p)
         if os.path.exists(f): return f
@@ -245,7 +245,7 @@ T = {}
 EMB_TEX = {'openai': 'OpenAI', 'mpnet': 'MPNet', 'nomic': 'Nomic'}
 LEQ = r'$\leq$'
 
-# ---------------- S15 controlled stance test (values from the task brief / ASSESSMENT.md)
+# ---------------- S15 controlled stance test (pooled corpus-level results from the reported run)
 s15 = [('Canada', 'mpnet', .689, .153, .847, .193, 23), ('Canada', 'openai', .739, .128, .872, .193, 23), ('Canada', 'nomic', .468, .055, .945, .107, 23),
        ('Scotland', 'mpnet', .655, .142, .858, .175, 28), ('Scotland', 'openai', .678, .124, .876, .164, 28), ('Scotland', 'nomic', .439, .051, .949, .085, 28)]
 body = ''
@@ -384,7 +384,7 @@ for t in TOPICS:
     for i, (_, r) in enumerate(d.iterrows()):
         body += f'{TOPIC_NAME[t] if i == 0 else ""} & {r.min_resp} & {r.n_ideas} & {f1(r["%MISSED"])} & {f1(r["%COVERED"])} & {f1(r["%STANCE_MISMATCH"])} & {f1(r["%UNCERTAIN"])} & {f1(r["%RELOCATED"])} \\\\\n'
     body += '\\midrule\n' if t != TOPICS[-1] else ''
-body += f'\\midrule\n\\multicolumn{{{NC}}}{{L{{13.4cm}}}}{{\\textit{{Panel D. Are ideas of opposition or concern missed more often? Share missed (\\%) and adjusted odds ratio (OR)}}}}\\\\\n'
+body += f'\\midrule\n\\multicolumn{{{NC}}}{{L{{13.4cm}}}}{{\\textit{{Panel D. Are opposing or concerned ideas more often labeled missed? Share missed (\\%) and adjusted odds ratio (OR)}}}}\\\\\n'
 body += 'Min.\\ respondents & Summaries & Scope & Idea--summary pairs & Oppose/ concern missed (\\%, $n$) & Other missed (\\%, $n$) & Adjusted OR [95\\% CI] & Adjusted $p$ \\\\\n\\midrule\n'
 for s_ in STANCE:
     pairs = f'{int(s_["pairs"]):,}'
@@ -436,14 +436,15 @@ print('Panel E adjusted shares', cor, SYN)
 assert (_d[('Planted inclusion labeled COVERED', 'Opposition/concern')], _d[('Planted inclusion labeled COVERED', 'Other')]) == ((19, 28), (38, 40))
 assert abs(cor['opp']-0.66) < 0.006 and abs(cor['oth']-0.29) < 0.006, cor
 head21 = 'Topic & Test / summary & Rule / ideas & Result & & & & '
-T['S21'] = longtab(body, r'\textbf{Synthetic interventions, sensitivity and statistical test for the idea audit.} The audit extracts the ideas that recur among respondents and asks, for each summary, whether the idea is present. An idea is labeled MISSED when both judges (a natural-language-inference model and a language-model judge) find it absent, COVERED when both find it present, STANCE\_MISMATCH when the summary discusses the topic with the opposite stance, RELOCATED when it appears in a different part of the text, and UNCERTAIN when the judges disagree. \textbf{Panel A} checks the method with synthetic interventions: planted deletions (the sentences that the inference model judged to express the idea are removed; the remaining text may still express it, so a missed label is expected but not certain), planted paraphrases, called inclusions (should be found present), planted opposite-stance versions (should not count as covered) and an unrelated summary (everything should be missed); each row gives the share of synthetic interventions that behave as expected under one rule, with its 95\% Wilson interval. \textbf{Panel B} gives the label shares for the official summary and, for each model, the mean over the three seeds. \textbf{Panel C} shows how the official-summary shares change with the minimum number of respondents required for an idea to be counted. \textbf{Panel D} compares the share of MISSED ideas between ideas expressing opposition or concern and all other ideas, for ideas with at least 5 or at least 10 respondents. The adjusted odds ratio comes from a logistic regression that also accounts for the number of respondents per idea and the topic, with standard errors clustered by idea. A ratio above 1 means opposition or concern ideas are missed more often. \textbf{Panel E} repeats two of the synthetic interventions separately for ideas of opposition or concern and for all other ideas. The first line below it gives an adjusted missed share for the official summaries, computed as (observed missed share $-$ rate of planted inclusions labeled MISSED) / (negative-control MISSED rate $-$ rate of planted inclusions labeled MISSED); it is an illustrative calculation that assumes that these synthetic response rates apply to the actual summaries, an assumption that has not been validated, and it rests on few synthetic cases. The second line gives the agreement (Cohen\'s kappa) between the two judges. In Panel D the logistic model for official summaries with at least 10 respondents over all four topics could not be estimated (no Scottish idea is labeled missed, which separates the outcome perfectly). In the all-topic rows for generated summaries, the Q21 generated summaries are excluded because 7 of 9 missed their length budget; Q21 generated summaries in Panel B are shown for completeness only and are not part of the controlled comparison. For generated summaries the same idea appears once per summary, so Fisher exact tests that treat idea--summary pairs as independent would overstate certainty and are not reported; the clustered model is the basis for inference.',
+T['S21'] = longtab(body, r"""\textbf{Synthetic checks and sensitivity of the idea audit.} Panel A reports synthetic checks with 95\% Wilson intervals. Panel B shows idea labels by summary source, with model values averaged over seeds. Panel C varies the minimum number of respondents per idea. Panel D compares missed labels by stance after adjustment for topic and idea prevalence. Panel E compares the combined rule across stance groups and reports agreement between judges. See Note S6 for label definitions and interpretation.""",
     'tab:s21', 'L{1.7cm}L{2.3cm}L{2.6cm}L{1.3cm}L{1.4cm}L{1.5cm}L{1.5cm}L{1.5cm}', None, small='\\scriptsize', ncol=8)
 
 # ---------------- S22 ten most prevalent ideas missed by the official summary
 it = open(inp('idea_audit', 'RESULTS.md'), encoding='utf8').read()
 def missed_tbl(topic):
-    m = re.search(rf'\n## {topic}\n.*?### 10 most prevalent ideas MISSED by the official summary \(for the paper\)\n+(\|.*?)\n\n', it, re.S)
-    rows = [l for l in m.group(1).split('\n') if l.startswith('|')][2:]
+    topic_block = it.split(f'\n## {topic}\n', 1)[1].split('\n## ', 1)[0]
+    header = '| canonical_statement | stance | n_resp | pct_resp | frac_summaries_missing | quote1 | quote1_rid |'
+    rows = topic_block.split(header + '\n', 1)[1].split('\n\n', 1)[0].splitlines()[1:]
     out = []
     for l in rows:
         c = [x.strip() for x in l.strip('|').split(' | ')]
@@ -459,7 +460,7 @@ for t in ['education', 'trust']:
         qq = f'``{esc(qq)}\'\'' if qq != '--' else '--'
         body += f'{i+1} & {esc(stmt)} & {stance} & {n} ({pct}\\%) & {k} of 10 & {qq} \\\\\n'
     body += '\\midrule\n' if t == 'education' else ''
-T['S22'] = longtab(body, r'\textbf{The ten most prevalent ideas missed by the official summary, for Education and Trust.} Each row is a canonical statement for an idea cluster containing at least 10 respondents (claims extracted from the responses were grouped by similarity and stance, and the statement was written by a language model). ``Stance\'\' is the position taken by the idea (oppose, concern, support or suggestion). ``Respondents\'\' is the number of distinct respondents whose claims are in the cluster, with their share of all respondents for the topic; these respondents need not have expressed every detail of the statement. The official summary is listed as missing the idea because the two automated judges (a natural-language-inference model and a language-model judge) both labeled it MISSED. ``Missed in\'\' counts how many of the ten summaries (the official one and nine generated ones: three models times three seeds) received the MISSED label; a high count means that the omission is shared by many summarizers. The last column shows one short illustrative quotation from a respondent (shown only when it is at most 15 words long).',
+T['S22'] = longtab(body, r"""\textbf{The ten most prevalent ideas labeled missed in each Canadian topic's official summary.} Each statement summarizes a cluster of claims from at least 10 respondents, grouped by stance and similarity. A language model wrote the statement. The table gives the number of distinct respondents in each cluster and their share of all respondents retained for that topic. Individual respondents may have expressed only part of the statement. An idea was labeled missed when the language model judged it unexpressed and the inference model's maximum entailment probability was below 0.5. The column headed ``Missed in'' counts summaries that received this label for the idea, out of ten (the official summary and nine generated with three models and three seeds). Illustrative quotations are limited to 15 words.""",
     'tab:s22', 'rL{5.2cm}L{1.5cm}L{2.0cm}L{1.2cm}L{3.4cm}', 'Rank & Canonical statement & Stance & Respondents (share) & Missed in & Example quotation')
 
 # ---------------- S17 Scotland full results
